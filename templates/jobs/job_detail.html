@@ -1,0 +1,14 @@
+<!-- 백엔드 테스트용  -->
+<h1>{{ job.job_name }}</h1>
+<p><strong>설명:</strong> {{ job.job_description }}</p>
+<p><strong>관련 전공:</strong> {{ job.related_majors }}</p>
+<p><strong>진입 방법:</strong> {{ job.entry_path }}</p>
+<p><strong>추천 이유:</strong> {{ job.recommend_reason }}</p>
+
+<p><strong>관련 태그:</strong>
+  {% for tag in job.related_tags.all %}
+    <span>#{{ tag.name }}</span>
+  {% endfor %}
+</p>
+
+<a href="javascript:history.back()">← 돌아가기</a>

@@ -16,7 +16,6 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             # 회원가입 후 로그인 처리
-            from django.contrib.auth import login
             login(request, user)
             return redirect('users:home')
         else:
