@@ -122,7 +122,22 @@ STATIC_URL = 'static/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
+
+# settings.py
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # settings.py
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# settings.py
+LOGIN_URL = '/login/'
+# 이메일 설정 - 개발용 (콘솔 출력)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # 메일을 콘솔로 출력
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # 발신자 이메일 (필수)
+
+
 

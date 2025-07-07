@@ -31,7 +31,7 @@
         <button type="submit">로그인</button>
     </form>
 
-    <p><a href="{% url 'users:signup' %}">회원가입</a></p>
-    <p><a href="{% url 'users:find_user_id' %}">아이디 찾기</a> | <a href="#">비밀번호 찾기</a></p>
+    <p><a href="{% url 'signup' %}">회원가입</a></p>
+    <p><a href="{% url 'find_user_id' %}">아이디 찾기</a> | <a href="{% url 'password_reset' %}">비밀번호 찾기</a></p>
 </body>
 </html>

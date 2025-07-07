@@ -51,7 +51,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('users:home')
+            return redirect('home')
         else:
             # 회원가입 실패 시 form 에러 출력
             print(form.errors)  # 🔹 서버 로그에서 확인 가능
@@ -74,31 +74,30 @@ def signup_view(request):
 
 
 
-        
 def login_view(request):
-    # GET 요청 시 로그인 폼 응답
     if request.method == 'GET':
         return render(request, 'users/login.html', {'form': LoginForm()})
     else:
-        # POST 요청 시 로그인 처리
         form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            name = form.cleaned_data.get('name')
+            user_id = form.cleaned_data.get('username')  # ← 여기 반드시 'username'
             password = form.cleaned_data.get('password')
-            user = authenticate(name=name, password=password)
+            user = authenticate(request, username=user_id, password=password)  # 'username' 파라미터로 전달
             if user is not None:
                 login(request, user)
-                return redirect('users:home')
+                return redirect('home')
             else:
                 return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다.'})
         else:
-            return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다'})
+            return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다.'})
+
+
 
 def logout_view(request):
     
     # 로그아웃 처리
     logout(request)
-    return redirect('users:home')
+    return redirect('home')
 
 
 # 아이디 찾기

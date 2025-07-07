@@ -12,7 +12,7 @@ class SignUpForm(UserCreationForm):
         
 
 class LoginForm(AuthenticationForm):
-    user_id = forms.CharField(label='아이디')
+    username = forms.CharField(label='아이디')
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
