@@ -1,0 +1,22 @@
+<!-- 백엔드 테스트용  -->
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>아이디 찾기</title>
+</head>
+<body>
+    <h2>아이디 찾기</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>가입 시 등록한 이메일:</label>
+        <input type="email" name="email" required>
+        <button type="submit">아이디 찾기</button>
+    </form>
+
+    {% if user_id_result %}
+        <p>{{ user_id_result }}</p>
+    {% endif %}
+</body>
+</html>

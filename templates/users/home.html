@@ -9,7 +9,7 @@
     <h1>홈페이지입니다 🎉</h1>
 
     {% if user.is_authenticated %}
-        <p>안녕하세요, {{ user.username }}님!</p>
+        <p>안녕하세요, {{ user.name }}님!</p>
         <a href="{% url 'users:logout' %}">로그아웃</a>
     {% else %}
         <a href="{% url 'users:login' %}">로그인</a> |

@@ -1,38 +1,91 @@
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import authenticate, login, logout 
+
+from .forms import SignUpForm, LoginForm
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import get_user_model
 # Create your views here.
 
 def signup_view(request):
-    # GET 요청 시 회원가입 폼 응답
-    if request.method == 'GET':
-        form = SignUpForm()
-        return render(request, 'users/signup.html', {'form': form})
-    
-    # POST 요청 시 데이터 확인 후 회원가입 처리
-    else:
+    User = get_user_model()
+
+    if request.method == 'POST':
         form = SignUpForm(request.POST)
+        user_id = request.POST.get('user_id')
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        name_checked = request.POST.get('name_checked')
+
+        # (1) 아이디 중복 확인 버튼 클릭 시
+        if 'check_name' in request.POST:
+            if User.objects.filter(user_id=user_id).exists():
+                return render(request, 'users/signup.html', {
+                    'form': form,
+                    'name_error': '이미 사용 중인 아이디입니다.',
+                    'name_checked': 'false',
+                    'user_id': user_id,
+                    'name': name,
+                    'email': email,
+                })
+            else:
+                return render(request, 'users/signup.html', {
+                    'form': form,
+                    'name_error': '사용 가능한 아이디입니다!',
+                    'name_checked': 'true',
+                    'user_id': user_id,
+                    'name': name,
+                    'email': email,
+                })
+
+        # (2) 중복 확인 안했을 때
+        if name_checked != 'true':
+            return render(request, 'users/signup.html', {
+                'form': form,
+                'name_error': '아이디 중복 확인을 먼저 해주세요.',
+                'name_checked': 'false',
+                'user_id': user_id,
+                'name': name,
+                'email': email,
+            })
+
+        # (3) 회원가입 진행
         if form.is_valid():
             user = form.save()
-            # 회원가입 후 로그인 처리
             login(request, user)
             return redirect('users:home')
         else:
-            # 폼이 유효하지 않은 경우 에러 메시지와 함께 폼 재렌더링
-            return render(request, 'users/signup.html', {'form': form})
+            # 회원가입 실패 시 form 에러 출력
+            print(form.errors)  # 🔹 서버 로그에서 확인 가능
+            return render(request, 'users/signup.html', {
+                'form': form,
+                'name_checked': 'true',
+                'user_id': user_id,
+                'name': name,
+                'email': email,})
+
+           
+
+    else:
+        
+        form = SignUpForm()
+        return render(request, 'users/signup.html', {
+            'form': form,
+            'name_checked': 'false',
+        })
+
+
+
         
 def login_view(request):
     # GET 요청 시 로그인 폼 응답
     if request.method == 'GET':
-        return render(request, 'users/login.html', {'form': AuthenticationForm()})
+        return render(request, 'users/login.html', {'form': LoginForm()})
     else:
         # POST 요청 시 로그인 처리
-        form = AuthenticationForm(request, data=request.POST)
+        form = LoginForm(request, data=request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get('username')
+            name = form.cleaned_data.get('name')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username, password=password)
+            user = authenticate(name=name, password=password)
             if user is not None:
                 login(request, user)
                 return redirect('users:home')
@@ -42,9 +95,27 @@ def login_view(request):
             return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다'})
 
 def logout_view(request):
+    
     # 로그아웃 처리
     logout(request)
     return redirect('users:home')
+
+
+# 아이디 찾기
+def find_user_id_view(request):
+    User = get_user_model()
+    user_id_result = None
+
+    if request.method == 'POST':
+        email = request.POST.get('email')
+        try:
+            user = User.objects.get(email=email)
+            user_id_result = f"아이디는 '{user.user_id}' 입니다."
+        except User.DoesNotExist:
+            user_id_result = "해당 이메일로 가입된 사용자가 없습니다."
+
+    return render(request, 'users/find_user_id.html', {'user_id_result': user_id_result})
+
 
 def home(request):
     return render(request, 'users/home.html')
