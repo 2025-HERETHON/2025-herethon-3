@@ -1,9 +1,11 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
 </head>
+
 <body>
     <h2>회원가입</h2>
     
@@ -15,4 +17,80 @@
 
     <p>이미 계정이 있으신가요? <a href="{% url 'users:login' %}">로그인</a></p>
 </body>
+
+</html> -->
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>회원가입</title>
+        <link rel="stylesheet" href="{% static 'css/signup.css' %}" />
+        <script src="{% static 'js/signup.js' %}" defer></script>
+    </head>
+    <body>
+        <div id="Container">
+            <header>
+                <div id="TimeContainer">
+                    <img id="Time" src="{% static '/img/Time.svg' %}" />
+                </div>
+                <img id="Levels" src="{% static 'img/Levels.svg' %}" />
+            </header>
+
+            <div id="HeadContainer">
+                <div id="SignUpContainer">
+                    <a href="{% url 'users:home' %}">
+                        <img id="BackBtn" src="{% static 'img/backBtn.svg' %}" />
+                    </a>
+                    <div class="SignupText">
+                        <p>회원가입</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 회원가입 작성부분 -->
+            <form method='post' action="{% url 'users:signup' %}" id="SignupInput">
+                {% csrf_token %}
+                <div class="id_container">
+                    <div class="title_id">
+                        <p>아이디<span class="required_star">*</span></p>
+                    </div>
+    
+                    <div id="id_board">
+                        <div class="id_input">
+                            <div class="InputBox_id"><input type="text" name="username" id="ID" placeholder="아이디" /></div>
+                            <div class="HelperText1"><p>6-10자 영문, 숫자로 입력해 주세요.</p></div>
+                        </div>
+                        <button id="id_check" type="button"><span>중복확인</span></button>
+                    </div>
+                </div>
+
+                <div class="password_container1">
+                    <div class="title_password">
+                        <p>비밀번호<span class="required_star">*</span></p>
+                    </div> 
+                    <div class="password_input1">
+                        <div class="InputBox"><input type="password" name="password1" id="PW" placeholder="비밀번호 입력" /></div>
+                        <div class="HelperText2"><p>6-20자 영문, 숫자, 특수문자를 조합하여 입력해 주세요.</p></div>
+                    </div>
+                </div>
+
+                <div class="password_container2">
+                    <div class="title_password">
+                        <p>비밀번호 확인<span class="required_star">*</span></p>
+                    </div>
+                    <div class="password_input2">
+                        <div class="InputBox"><input type="password" name="password2" id="PW_try" placeholder="비밀번호 재입력" /></div>
+                        <div class="HelperText3"><p>비밀번호가 일치하지 않습니다.</p></div>
+                    </div>
+                </div>
+
+                <button type="submit" id="signupBtn" value="회원가입">가입하기</button>
+            </form>
+
+
+        </div>
+    </body>
 </html>
