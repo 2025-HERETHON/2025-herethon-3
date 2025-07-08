@@ -1,76 +1,44 @@
 from django.shortcuts import render, redirect
-
+from django.http import HttpResponse, JsonResponse
 from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 # Create your views here.
 
 def signup_view(request):
-    User = get_user_model()
-
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        user_id = request.POST.get('user_id')
-        name = request.POST.get('name')
-        email = request.POST.get('email')
-        name_checked = request.POST.get('name_checked')
 
-        # (1) 아이디 중복 확인 버튼 클릭 시
-        if 'check_name' in request.POST:
-            if User.objects.filter(user_id=user_id).exists():
-                return render(request, 'users/signup.html', {
-                    'form': form,
-                    'name_error': '이미 사용 중인 아이디입니다.',
-                    'name_checked': 'false',
-                    'user_id': user_id,
-                    'name': name,
-                    'email': email,
-                })
-            else:
-                return render(request, 'users/signup.html', {
-                    'form': form,
-                    'name_error': '사용 가능한 아이디입니다!',
-                    'name_checked': 'true',
-                    'user_id': user_id,
-                    'name': name,
-                    'email': email,
-                })
-
-        # (2) 중복 확인 안했을 때
-        if name_checked != 'true':
-            return render(request, 'users/signup.html', {
-                'form': form,
-                'name_error': '아이디 중복 확인을 먼저 해주세요.',
-                'name_checked': 'false',
-                'user_id': user_id,
-                'name': name,
-                'email': email,
-            })
-
-        # (3) 회원가입 진행
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return redirect('home')
+            return HttpResponse(f"회원가입 성공! 생성된 유저: {user.user_id}")
         else:
-            # 회원가입 실패 시 form 에러 출력
-            print(form.errors)  # 🔹 서버 로그에서 확인 가능
+            print("❌ 폼 에러:", form.errors)
             return render(request, 'users/signup.html', {
                 'form': form,
-                'name_checked': 'true',
-                'user_id': user_id,
-                'name': name,
-                'email': email,})
-
-           
-
+                'user_id': request.POST.get('user_id'),
+                'name': request.POST.get('name'),
+                'email': request.POST.get('email'),
+            })
     else:
-        
         form = SignUpForm()
         return render(request, 'users/signup.html', {
-            'form': form,
-            'name_checked': 'false',
+            'form': form
         })
+
+# 아이디 중복 체크
+def check_user_id_view(request):
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        exists = get_user_model().objects.filter(user_id=user_id).exists()
+        if exists:
+            return JsonResponse({'exists': True, 'message': '이미 사용 중인 아이디입니다.'})
+        else:
+            return JsonResponse({'exists': False, 'message': '사용 가능한 아이디입니다!'})
+    else:
+        return JsonResponse({'error': '허용되지 않은 요청 방식입니다.'}, status=405)
+
 
 
 

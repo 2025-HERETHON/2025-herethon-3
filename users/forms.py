@@ -6,6 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 class SignUpForm(UserCreationForm):
     user_id = forms.CharField(label='아이디')
     name = forms.CharField(label='이름')
+    email = forms.EmailField(label='이메일')
     class Meta:
         model = CustomUser
         fields = ('user_id', 'name', 'email', 'password1', 'password2')
