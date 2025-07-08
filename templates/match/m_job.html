@@ -1,0 +1,36 @@
+<!-- 백엔드 테스트용  -->
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>추천 직무 목록</title>
+</head>
+<body>
+    <h2>추천 직무 목록</h2>
+
+    {% if tags %}
+        <p>선택한 관심사: 
+            {% for tag in tags %}
+                <strong>{{ tag.tag_name }}</strong>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% endif %}
+
+    {% if message %}
+        <p>{{ message }}</p>
+    {% else %}
+        <ul>
+            {% for job in jobs %}
+                <li>
+                    <form method="get" action="{% url 'match:m_job_detail' %}">
+                        <button type="submit" name="job_id" value="{{ job.job_id }}">
+                            {{ job.job_name }}
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>
