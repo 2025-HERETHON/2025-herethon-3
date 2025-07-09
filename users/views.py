@@ -55,23 +55,25 @@ def check_user_id_view(request):
 
 
 
+@csrf_exempt  # CSRF 토큰을 우회하려면 이 데코레이터가 필요합니다. (그러나 배포 환경에서는 CSRF를 비활성화하지 마세요)
 def login_view(request):
-    if request.method == 'GET':
-        return render(request, 'users/login.html', {'form': LoginForm()})
-    else:
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            user_id = form.cleaned_data.get('username')  # ← 여기 반드시 'username'
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=user_id, password=password)  # 'username' 파라미터로 전달
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다.'})
-        else:
-            return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다.'})
+    if request.method == "GET":
+        return render(request, 'users/login.html')  # 로그인 폼 렌더링
 
+    elif request.method == "POST":
+        data = json.loads(request.body)  # POST 데이터 읽기
+        user_id = data.get('user_id')
+        password = data.get('password')
+
+        user = authenticate(request, user_id=user_id, password=password)
+
+        if user is not None:
+            login(request, user)  # 로그인 성공
+            return JsonResponse({'success': True})  # 성공한 경우 JSON 응답
+        else:
+            return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=400)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
 def logout_view(request):
