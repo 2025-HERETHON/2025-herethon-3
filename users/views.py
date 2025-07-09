@@ -5,27 +5,31 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.contrib.auth import get_user_model
 from django.views.decorators.csrf import csrf_exempt
+from django.http import HttpResponse
 import json
 # Create your views here.
 
 def signup_view(request):
-    # GET 요청 시 회원가입 폼 응답
-    if request.method == 'GET':
-        form = SignUpForm()
-        return render(request, 'users/signup.html', {'form': form})
-    
-    # POST 요청 시 데이터 확인 후 회원가입 처리
-    else:
+    if request.method == 'POST':
         form = SignUpForm(request.POST)
+
         if form.is_valid():
             user = form.save()
-            # 회원가입 후 로그인 처리
-            from django.contrib.auth import login
             login(request, user)
-            return redirect('users:home')
+            return HttpResponse(f"회원가입 성공! 생성된 유저: {user.user_id}")
         else:
-            # 폼이 유효하지 않은 경우 에러 메시지와 함께 폼 재렌더링
-            return render(request, 'users/signup.html', {'form': form})
+            print("❌ 폼 에러:", form.errors)
+            return render(request, 'users/signup.html', {
+                'form': form,
+                'user_id': request.POST.get('user_id'),
+                'name': request.POST.get('name'),
+                'email': request.POST.get('email'),
+            })
+    else:
+        form = SignUpForm()
+        return render(request, 'users/signup.html', {
+            'form': form
+        })
         
 def login_view(request):
     # GET 요청 시 로그인 폼 응답
@@ -55,7 +59,7 @@ def check_user_id_view(request):
             data = json.loads(request.body.decode('utf-8'))
             user_id = data.get('user_id', '').strip()
 
-            exists = get_user_model().objects.filter(username=user_id).exists()
+            exists = get_user_model().objects.filter(user_id=user_id).exists()
 
             return JsonResponse({
                 'exists': exists,
