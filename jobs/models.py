@@ -1,4 +1,6 @@
 from django.db import models
+from django.conf import settings
+
 
 # Create your models here.
 class FieldCategory(models.Model):
@@ -32,3 +34,16 @@ class Job(models.Model):
     # 사용자편의성을 위함
     def __str__(self):
         return self.job_name
+    
+
+class UserLikedJob(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    job = models.ForeignKey(Job, on_delete=models.CASCADE)
+    liked_at = models.DateTimeField(auto_now_add=True)
+    stem_category = models.CharField(max_length=100, blank=True, null=True)  # STEM 카테고리 추가
+
+    class Meta:
+        unique_together = ('user', 'job')  # 같은 직무 중복 저장 방지
+
+    def __str__(self):
+        return f"{self.user.username} ❤️ {self.job.title}"

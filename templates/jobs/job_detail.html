@@ -1,16 +1,83 @@
-<!-- 백엔드 테스트용  -->
-<h1>{{ job.job_name }}</h1>
-<p><strong>:</strong> {{ job.emotive_copy }}</p>
-<p><strong>설명:</strong> {{ job.job_description }}</p>
-<p><strong>필요한 역량:</strong> {{ job.Soft_Skills }}</p>
-<p><strong>관련 전공:</strong> {{ job.related_majors }}</p>
-<p><strong>진입 방법:</strong> {{ job.entry_path }}</p>
-<p><strong>추천 이유:</strong> {{ job.recommend_reason }}</p>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ job.job_name }}</title>
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <style>
+    .like-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: #aaa;
+    }
+    .like-btn.liked {
+      color: red;
+    }
+  </style>
+</head>
+<body>
 
-<p><strong>관련 태그:</strong>
-  {% for tag in job.related_tags.all %}
-    <span>#{{ tag.name }}</span>
-  {% endfor %}
-</p>
+  <h1>{{ job.job_name }}</h1>
+  <p><strong>한줄 설명:</strong> {{ job.emotive_copy }}</p>
+  <p><strong>설명:</strong> {{ job.job_description }}</p>
+  <p><strong>필요한 역량:</strong> {{ job.Soft_Skills }}</p>
+  <p><strong>관련 전공:</strong> {{ job.related_majors }}</p>
+  <p><strong>진입 방법:</strong> {{ job.entry_path }}</p>
+  <p><strong>추천 이유:</strong> {{ job.recommend_reason }}</p>
 
-<a href="javascript:history.back()">← 돌아가기</a>
+  <p><strong>관련 태그:</strong>
+    {% for tag in job.related_tags.all %}
+      <span>#{{ tag.name }}</span>
+    {% empty %}
+      <span>관련 태그 없음</span>
+    {% endfor %}
+  </p>
+
+  <!-- 저장하기 버튼 -->
+  <form id="like-form" data-url="{% url 'jobs:like_job' job.job_id %}">
+    <button type="submit" id="like-button">♡ 저장하기</button>
+  </form>
+
+  <a href="{% url 'match:m_job_select' %}">← 목록으로</a>
+
+  <!-- JS 연결 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("like-form");
+      const button = document.getElementById("like-button");
+
+      if (!form || !button) return;
+
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        fetch(form.dataset.url, {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": csrfToken,
+            "Content-Type": "application/json"
+          }
+        })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === "liked") {
+            button.textContent = "♥ 저장됨";
+            button.classList.add("liked");
+          } else if (data.status === "unliked") {
+            button.textContent = "♡ 저장하기";
+            button.classList.remove("liked");
+          }
+        })
+        .catch(error => {
+          console.error("에러 발생:", error);
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>

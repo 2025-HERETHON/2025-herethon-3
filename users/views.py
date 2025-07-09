@@ -3,6 +3,8 @@ from django.http import HttpResponse, JsonResponse
 from .forms import SignUpForm, LoginForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import login_required
+from jobs.models import UserLikedJob
 # Create your views here.
 
 def signup_view(request):
@@ -84,5 +86,10 @@ def find_user_id_view(request):
     return render(request, 'users/find_user_id.html', {'user_id_result': user_id_result})
 
 
-def home(request):
-    return render(request, 'users/home.html')
+@login_required
+def home_view(request):
+    liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:3]  # 최대 3개
+    return render(request, 'users/home.html', {
+        'liked_jobs': liked_jobs,
+        'username': request.user.username,
+    })
