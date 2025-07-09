@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 class InterestTag(models.Model):
     tag_id = models.AutoField(primary_key=True)
@@ -27,3 +28,12 @@ class Job(models.Model):
 
     def __str__(self):
         return self.job_name
+    
+
+# UserSelectedTag model 생성
+class UserSelectedTag(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    tag = models.ForeignKey(InterestTag, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username} - {self.tag.tag_name}"

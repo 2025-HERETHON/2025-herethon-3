@@ -1,17 +1,41 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse
-from .models import InterestTag, Job
+from .models import InterestTag, Job , UserSelectedTag
+from django.contrib.auth.decorators import login_required
+from match.models import UserSelectedTag
+
 
 # match/ 첫 화면 (아무것도 없음. 임시 화면)
+@login_required
 def match_home(request):
     return HttpResponse("Match 홈")
 
 # http://127.0.0.1:8000/match/choose 화면 view
+@login_required
 def choose_interest_view(request):
+    if request.method == 'POST':
+        selected_tag_ids = request.POST.getlist('tag_ids')  # checkbox name이 'tag_ids'일 때
+        print("🔍 선택된 tag_ids:", selected_tag_ids)
+
+
+        # 이전 선택 삭제 (선택 1회만 허용 또는 업데이트하려면 필요)
+        UserSelectedTag.objects.filter(user=request.user).delete()
+
+        # 새 선택 저장
+        for tag_id in selected_tag_ids:
+            tag = get_object_or_404(InterestTag, tag_id=tag_id)
+            UserSelectedTag.objects.create(user=request.user, tag=tag)
+
+        return redirect('match:m_job_select')  # 직무 추천 페이지로 이동
+
+    # GET 요청: 관심사 선택 화면 보여주기
     tags = InterestTag.objects.all()
+    print("✅ InterestTag 총 개수:", tags.count()) # 디버깅용 출력
+    
     return render(request, 'match/m_choose.html', {'tags': tags})
 
 # http://127.0.0.1:8000/match/job/ 화면 view
+@login_required
 def job_select_view(request):
     tag_ids = request.GET.getlist('tag_ids')
 
@@ -33,7 +57,9 @@ def job_select_view(request):
     })
 
 # http://127.0.0.1:8000/match/job_detail/ 의 view (선택한 직무 상세보기)
+@login_required
 def job_detail_view(request):
     job_id = request.GET.get('job_id')
     job = get_object_or_404(Job, job_id=job_id)
     return render(request, 'match/m_job_detail.html', {'job': job})
+

@@ -1,4 +1,4 @@
-<!-- 백엔드 테스트용  -->
+<!-- match/templates/match/m_choose.html -->
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -9,7 +9,8 @@
 <body>
     <h2>관심사를 선택하세요</h2>
 
-    <form method="get" action="{% url 'match:m_job_select' %}">
+    <form method="post" action="{% url 'match:m_choose' %}">
+        {% csrf_token %}
         {% for tag in tags %}
             <label>
                 <input type="checkbox" name="tag_ids" value="{{ tag.tag_id }}">
