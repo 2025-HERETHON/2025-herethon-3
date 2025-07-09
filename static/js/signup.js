@@ -1,5 +1,5 @@
 const idInput = document.getElementById("ID");
-const checkBtn = document.getElementById("id_check");
+const checkBtn = document.getElementById("check_user_id");
 const helperText = document.querySelector(".HelperText1 p");
 
 const passwordInput = document.getElementById("PW");
@@ -14,6 +14,9 @@ const pwtryHelperText = document.querySelector(".HelperText3 p");
 const signupForm = document.getElementById("SignupInput"); // form 태그에 id 부여 필요
 
 let isIdAvailable = false;  
+
+console.log("✅ JS 파일 정상 로드됨");
+
 
 // 1. ID 6자 이상, 영어 또는 숫자 → 중복확인 버튼 활성화
 function isIdValid(id) {
@@ -39,7 +42,10 @@ idInput.addEventListener("input", checkIdInput);
 checkBtn.addEventListener("click", function () {
     const userId = idInput.value.trim();
 
-    fetch("/signup/check_user_id/", {
+    console.log("✅ 요청 URL:", window.location.href);
+
+
+    fetch("/check_user_id/", {
         method: "POST",  // 백엔드에 맞게 GET으로 바꿔도 됨
         headers: {
             "Content-Type": "application/json",
