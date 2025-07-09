@@ -40,19 +40,20 @@
         <p>안녕하세요, {{ user.name }}님!</p>
         <a href="{% url 'logout' %}">로그아웃</a>
 
-        <h3>저장한 직무 카드</h3>
-        <div class="job-card-row">
-            {% for like in liked_jobs %}
-                <div class="job-card">
-                    <div class="job-thumbnail">썸네일</div>
-                    <div class="job-title">{{ like.job.title }}</div>
-                    <div class="stem">{{ like.job.stem_category }}</div>
-                    <a href="{% url 'jobs:job_detail' like.job.job_id %}" class="more-btn">더보기 ></a>
-                </div>
-            {% empty %}
-                <p>저장한 직무가 없습니다.</p>
-            {% endfor %}
-        </div>
+
+        <h3>최근 본 직무</h3>
+<div class="job-card-row">
+  {% for job in recent_jobs %}
+    <div class="job-card">
+      <div class="job-thumbnail">썸네일</div>
+      <div class="job-title">{{ job.title }}</div>
+      <div class="stem">{{ job.stem_category }}</div>
+      <a href="{% url 'jobs:job_detail' job.job_id %}" class="more-btn">더보기 ></a>
+    </div>
+  {% empty %}
+    <p>최근 본 직무가 없습니다.</p>
+  {% endfor %}
+</div>
 
         <a href="{% url 'match:m_choose' %}">관심사 선택하기</a>
     {% else %}

@@ -12,6 +12,7 @@ urlpatterns = [
     path('signup/check_user_id/', check_user_id_view, name='check_user_id'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
+    path('mypage/', mypage_view, name='mypage'),
     path('find_user_id/',find_user_id_view, name='find_user_id'),
     # 비밀번호 재설정 요청 (이메일 입력)
     path('password_reset/', auth_views.PasswordResetView.as_view(
