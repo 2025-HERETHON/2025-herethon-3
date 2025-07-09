@@ -3,9 +3,7 @@ from django.shortcuts import get_object_or_404
 from jobs.models import Job, UserLikedJob
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
-from match.models import Job
 from django.utils import timezone
-
 # Create your views here.
 # views.py
 
