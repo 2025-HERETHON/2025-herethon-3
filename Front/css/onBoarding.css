@@ -1,0 +1,108 @@
+#Container {
+  width: 375px;
+  height: 812px;
+  background: var(--Navy-Navy02, #d2e2fb);
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+header {
+  width: 100%;
+  padding: 9 * px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 106.87px;
+}
+#TimeContainer {
+  display: flex;
+  padding: 18.34px 0px 13.66px 0px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+}
+#logo {
+  margin-top: 220px;
+  color: #000;
+  text-align: center;
+
+  /* Heading/Heading 2 */
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 114.286% */
+  letter-spacing: -0.09px;
+}
+#text {
+  margin-top: 38px;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Title/Title 1 */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.064px;
+}
+span {
+  color: var(--Navy-NavyToneup, #2b66d0);
+
+  /* Title/Title 1 */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 120% */
+  letter-spacing: -0.064px;
+}
+button {
+  display: flex;
+  width: 343px;
+  height: 55px;
+  padding: 10px 24px;
+  margin-top: 40px;
+
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  background: var(--Navy-NavyToneup, #2b66d0);
+
+  color: var(--Navy-Navy01, #eaf2fd);
+  text-align: center;
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.32px;
+}
+#signin {
+  margin-top: 20px;
+  color: var(--Gray-Gray07, #8c8c8c);
+  text-align: center;
+
+  /* Body/Body 4 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+}
+a {
+  color: var(--Navy-NavyToneup, #2b66d0);
+
+  /* Body/Body 3 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.045px;
+}
