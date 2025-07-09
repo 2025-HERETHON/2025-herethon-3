@@ -60,9 +60,9 @@ def job_select_view(request):
     })
 
 # http://127.0.0.1:8000/match/job_detail/ 의 view (선택한 직무 상세보기)
-@login_required
-def job_detail_view(request):
-    job_id = request.GET.get('job_id')
-    job = get_object_or_404(Job, job_id=job_id)
-    return render(request, 'match/m_job_detail.html', {'job': job})
+#@login_required
+#def job_detail_view(request):
+#    job_id = request.GET.get('job_id')
+#    job = get_object_or_404(Job, job_id=job_id)
+#    return render(request, 'match/m_job_detail.html', {'job': job})
 

@@ -23,7 +23,7 @@
         <ul>
             {% for job in jobs %}
                 <li>
-                    <form method="get" action="{% url 'match:m_job_detail' %}">
+                    <form method="get" action="{% url 'jobs:job_detail' job.job_id %}">
                         <button type="submit" name="job_id" value="{{ job.job_id }}">
                             {{ job.job_name }}
                         </button>

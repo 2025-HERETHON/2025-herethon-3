@@ -19,6 +19,8 @@ class Job(models.Model):
     job_id = models.CharField(max_length=10, primary_key=True)
     job_name = models.CharField(max_length=100)
     job_description = models.TextField()
+    emotive_copy= models.TextField()
+    Soft_Skills = models.TextField()
     related_majors = models.TextField()
     entry_path = models.TextField()
     keyword_tags = models.CharField(max_length=200)

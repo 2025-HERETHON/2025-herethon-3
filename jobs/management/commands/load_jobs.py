@@ -18,6 +18,8 @@ class Command(BaseCommand):
                 job_id=row["job_id"],
                 job_name=row["job_name"],
                 job_description=row["job_description"],
+                emotive_copy=row["emotive_copy"],
+                Soft_Skills=row["Soft_Skills"],
                 related_majors=row["related_majors"],
                 entry_path=row["entry_path"],
                 keyword_tags=row["keyword_tags"],
