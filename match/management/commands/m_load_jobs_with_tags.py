@@ -14,7 +14,9 @@ class Command(BaseCommand):
                     defaults={
                         'job_name': row['job_name'],
                         'job_description': row['job_description'],
-                        'related_majors': row['related_majors'],
+                        'emotive_copy': row['emotive_copy'],
+                        'Soft_Skills': row['Soft_Skills'],
+                        'related_majors' : row['related_majors'],
                         'entry_path': row['entry_path'],
                         'keyword_tags': row['keyword_tags'],
                         'recommend_reason': row['recommend_reason'],
@@ -25,6 +27,8 @@ class Command(BaseCommand):
                 )
 
                 # related_tags 연결
+                job.related_tags.clear()
+
                 tag_ids = row['related_tags'].split(',')
                 for tag_id in tag_ids:
                     tag = InterestTag.objects.filter(tag_id=int(tag_id.strip())).first()

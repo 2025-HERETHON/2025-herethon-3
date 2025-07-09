@@ -51,7 +51,13 @@ def job_select_view(request):
     
     tag_ids = list(map(int, tag_ids))
     tags = InterestTag.objects.filter(tag_id__in=tag_ids)
-    jobs = Job.objects.filter(related_tags__tag_id__in=tag_ids).distinct()
+    jobs_raw = Job.objects.filter(related_tags__tag_id__in=tag_ids).distinct()
+
+    # keyword_tags를 쉼표로 split해서 넘겨줌
+    jobs = []
+    for job in jobs_raw:
+        job.keyword_tags_list = [tag.strip() for tag in job.keyword_tags.split(',')] if job.keyword_tags else []
+        jobs.append(job)
 
     return render(request, 'match/m_job.html', {
         'tags': tags,
