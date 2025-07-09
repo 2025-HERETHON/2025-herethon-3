@@ -112,16 +112,6 @@ form{
   margin: 0 16px;
 }
 
-/* 이름 작성부분*/
-.name_container{
-  display: flex;
-  width: 343px;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-  margin-top: 15px;
-}
-
 /* 아이디 작성부분 */
 .id_container{
   display: flex;
@@ -176,7 +166,7 @@ form{
   line-height: 20px;
   letter-spacing: -0.32px;
 }
-.HelperText1, .HelperText2, .HelperText3{
+.HelperText1, .HelperText2{
   height: 40px;
   display: flex;
   gap: 10px;
@@ -188,7 +178,6 @@ form{
   font-weight: 400;
   letter-spacing: -0.32px;
 }
-
 
 #check_user_id{
   display: flex;
@@ -224,7 +213,7 @@ form{
   flex-direction: column;
   align-items: flex-start;
   gap: 14px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 .title_password{
   display: flex;
@@ -263,23 +252,7 @@ form{
   margin-bottom: 15px;
 }
 
-.password_input2{
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-}
-.HelperText3 p{
-  color: var(--Red-Primary, #FF5B4D);
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: -0.32px;
-  display: none;
-}
 
-
-/* --------------- */
 .InputBox {
   display: flex;
   width: 343px;
@@ -324,7 +297,10 @@ button {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+
   text-align: center;
+
+
   font-size: 18px;
   font-weight: 600;
   line-height: 24px; /* 133.333% */
@@ -335,17 +311,5 @@ button {
   width: 100%;
   background: var(--Navy-NavyToneup, #2b66d0);
   color: var(--Navy-Navy01, #eaf2fd);
-  margin-top: -47px;
-}
-
-
-/* -------------- */
-/* 오류 테두리 클래스 */
-.error-border {
-  border: 1px solid #FF5B4D !important;
-}
-
-/* 오류 텍스트 색상 클래스 */
-.error-text {
-  color: #FF5B4D !important;
+  margin-top: 208px;
 }

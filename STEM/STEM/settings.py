@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'users',
+    'jobs',
+    'match',
 ]
 
 MIDDLEWARE = [
@@ -116,16 +118,45 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-STATIC_URL = 'static/'
-
+STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, "static")
 ]
+
+# 아래도 추가하세요 (정적 파일 서빙용)
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # 배포용(개발에 영향 없음)
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# Custom user model
+# settings.py
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+# settings.py
 AUTH_USER_MODEL = 'users.CustomUser'
+
+# settings.py
+LOGIN_URL = '/login/'
+# 이메일 설정 - 개발용 (콘솔 출력)
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # 메일을 콘솔로 출력
+#DEFAULT_FROM_EMAIL = 'webmaster@localhost'  # 발신자 이메일 (필수)
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.naver.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'loveah1230@naver.com'
+EMAIL_HOST_PASSWORD = 'Z6PG42GL3WMR'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# 개발용 임시 설정 (개발 서버일 경우 localhost 사용)
+DEFAULT_DOMAIN = '127.0.0.1:8000'
+
+
 
