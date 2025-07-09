@@ -1,0 +1,261 @@
+* {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-sizing: border-box;
+}
+p{
+    font-family: 'Pretendard', sans-serif;
+    font-style: normal;
+    color: var(--Gray-Gray10, #3F3F3F);
+}
+
+
+
+/* ---------------------- */
+
+#Container {
+    width: 375px;
+    height: 812px;
+    background: #fff;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    /* 중앙 정렬 */
+    margin: 0 auto;
+    border: 1px solid var(--Gray-Primary, #d9d9d9);
+}
+header {
+    width: 375px;
+    /* padding: 18px 0px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 106.87px;
+}
+#TimeContainer {
+    display: flex;
+    padding: 18.34px 0px 13.66px 0px;
+    justify-content: center;
+    align-items: center;
+    flex: 1 0 0;
+}
+#HeadContainer{
+    display: flex;
+    width: 375px;
+    padding: 8px 16px;
+    justify-content: space-between;
+    align-items: center; 
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
+}
+#rolemodelContainer{
+    display: flex;
+    align-items: center;
+    gap: 64px;
+}
+.rolemodelText{
+    display: flex;
+    width: 151px;
+    padding: 4px 0px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.rolemodelText P{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px; /* 120% */
+    letter-spacing: -0.32px;
+}
+
+#mainContainer{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+/* info_container 설명 부분 */
+.info_container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+    margin-top: 32px;
+}
+.job_info1 p{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 24px; /* 120% */
+    letter-spacing: -0.058px;
+}
+.job_info2 p{
+    width: 252px;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: -0.051px;
+}
+
+/* 롤모델 카드 */
+.rolemodel_container{
+    display: flex;
+    width: 296px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+}
+.board1{
+    display: flex;
+    height: 281px;
+    padding: 24px 17px;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid #E5E7EB;
+    background: var(--Blue-Blue01, #F1F9FF);
+    margin-top: 52px;
+}
+.box{
+    display: flex;
+    height: 233px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+.article{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.article p{
+    color: var(--Gray-Gray07, #8C8C8C);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.045px;
+}
+.article:hover p {
+    color: #2450A8;
+    text-decoration: underline;
+}
+
+.info_box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+    align-self: stretch;
+}
+.job_box{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+}
+.quote{
+    color: var(--Gray-Gray10, #3F3F3F);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.051px;
+}
+.job_info_box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+    align-self: stretch;
+}
+.name{
+    color: var(--Gray-Gray09, #595959);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.051px;
+}
+.job_title{
+    color: var(--Gray-Gray07, #8C8C8C);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.045px;  
+}
+.short_bio{
+    color: var(--Gray-Gray10, #3F3F3F);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 18px; /* 150% */
+    letter-spacing: -0.038px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* 버튼 3개 */
+
+.board2{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+#mainBtn{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--Navy-Navy08, #1B3F85);
+    background-color: #FFF;
+    transition: background-color 0.3s ease;
+}
+
+#mainBtn p{
+    color: var(--Navy-Navy08, #1B3F85);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.045px;
+}
+#mainBtn:hover{
+    background-color: #1B3F85;  
+}
+#mainBtn:hover p {
+    color: #FFF;
+}
+
+#otherjobBtn{
+    display: flex;
+    padding: 12px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    background-color: white;
+}
+#otherjobBtn p{
+    color: var(--Gray-Gray07, #8C8C8C);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.045px;
+}
+
