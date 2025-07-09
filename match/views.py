@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .models import InterestTag, Job , UserSelectedTag
 from django.contrib.auth.decorators import login_required
 from match.models import UserSelectedTag
+from django.utils.http import urlencode
 
 
 # match/ 첫 화면 (아무것도 없음. 임시 화면)
@@ -26,7 +27,8 @@ def choose_interest_view(request):
             tag = get_object_or_404(InterestTag, tag_id=tag_id)
             UserSelectedTag.objects.create(user=request.user, tag=tag)
 
-        return redirect('match:m_job_select')  # 직무 추천 페이지로 이동
+        query_string = urlencode([('tag_ids', tag_id) for tag_id in selected_tag_ids])
+        return redirect(f'/match/job/?{query_string}')
 
     # GET 요청: 관심사 선택 화면 보여주기
     tags = InterestTag.objects.all()
@@ -46,7 +48,8 @@ def job_select_view(request):
             'tags': [],
             'message': '선택된 관심사가 없습니다.'
         })
-
+    
+    tag_ids = list(map(int, tag_ids))
     tags = InterestTag.objects.filter(tag_id__in=tag_ids)
     jobs = Job.objects.filter(related_tags__tag_id__in=tag_ids).distinct()
 

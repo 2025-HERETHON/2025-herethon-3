@@ -10,4 +10,3 @@ class CustomUser(AbstractUser):
 
     USERNAME_FIELD = 'user_id'
     REQUIRED_FIELDS = ['name', 'email']
-
