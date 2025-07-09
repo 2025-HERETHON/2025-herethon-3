@@ -30,6 +30,7 @@ class Job(models.Model):
     stem_category = models.CharField(max_length=100)
     related_tags = models.ManyToManyField(InterestTag)
     field = models.ForeignKey(FieldCategory, on_delete=models.SET_NULL, null=True)
+    last_viewed_at= models.DateTimeField(null=True, blank=True)  # 마지막 조회 시간
 
     # 사용자편의성을 위함
     def __str__(self):

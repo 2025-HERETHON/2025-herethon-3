@@ -5,6 +5,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from jobs.models import UserLikedJob
+from jobs.models import Job
+
 # Create your views here.
 
 def signup_view(request):
@@ -88,8 +90,20 @@ def find_user_id_view(request):
 
 @login_required
 def home_view(request):
-    liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:3]  # 최대 3개
+   
+    recent_ids = request.session.get('recent_jobs', [])
+    recent_jobs = Job.objects.filter(job_id__in=recent_ids)
     return render(request, 'users/home.html', {
-        'liked_jobs': liked_jobs,
+        'username': request.user.username,
+        'recent_jobs': recent_jobs
+    })
+
+
+def mypage_view(request):
+    liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:3]  # 최대 3개
+    # 세션에 저장된 최근 본 직무 리스트 가져오기
+    return render(request, 'users/mypage.html', {
+        'liked_jobs': liked_jobs,       
         'username': request.user.username,
     })
+
