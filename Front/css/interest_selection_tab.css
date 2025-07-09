@@ -155,7 +155,7 @@ footer {
   justify-content: space-between;
   align-items: center;
   z-index: 10;
-  padding: 12px 18px 0 18px;
+  padding: 12px 30px 0 30px;
   box-sizing: border-box;
   margin-bottom: 16px;
 }
@@ -185,7 +185,6 @@ footer div p {
 }
 
 .home p,
-.history p,
 .my p {
   color: #979797;
 }
