@@ -1,4 +1,4 @@
-<!-- 백엔드 테스트용  -->
+<!-- 백엔드 테스트용 -->
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -7,30 +7,56 @@
     <title>추천 직무 목록</title>
 </head>
 <body>
-    <h2>추천 직무 목록</h2>
 
     {% if tags %}
-        <p>선택한 관심사: 
-            {% for tag in tags %}
-                <strong>{{ tag.tag_name }}</strong>{% if not forloop.last %}, {% endif %}
-            {% endfor %}
-        </p>
+    <div class="mb-4">
+        <h4 class="mb-2">선택한 관심사 :</h4>
+        {% for tag in tags %}
+        <span class="badge bg-primary me-2">{{ tag.tag_name }}</span>
+        {% endfor %}
+    </div>
     {% endif %}
 
-    {% if message %}
-        <p>{{ message }}</p>
+    <!-- 직무 카드 -->
+    {% if jobs %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for job in jobs %}
+        <div class="col">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <hr />
+
+                    <!-- 직무 이름 (버튼 없이 보여주기만) -->
+                    <h5 class="card-title fw-bold">{{ job.job_name }}</h5>
+
+                    <!-- 설명들 -->
+                    <p class="card-text">{{ job.job_description }}</p>
+                    <p class="mb-1"><strong>STEM 분야:</strong> {{ job.stem_category }}</p>
+                    <p class="mb-0">
+                        <strong>키워드:</strong>
+                        {% for kw in job.keyword_tags_list %}
+                        <span class="badge bg-secondary me-1">{{ kw }}</span>
+                        {% endfor %}
+                    </p>
+
+                    <!-- 자세히 보러가기 버튼만 따로 -->
+                    <div class="mt-2 text-end">
+                        <form method="get" action="{% url 'jobs:job_detail' job.job_id %}">
+                            <button type="submit" class="btn btn-outline-primary btn-sm" value="{{job.job_id}}">
+                                자세히 보러가기 →
+                            </button>
+                        </form>
+                    </div>
+
+                    <hr />
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
     {% else %}
-        <ul>
-            {% for job in jobs %}
-                <li>
-                    <form method="get" action="{% url 'jobs:job_detail' job.job_id %}">
-                        <button type="submit" name="job_id" value="{{ job.job_id }}">
-                            {{ job.job_name }}
-                        </button>
-                    </form>
-                </li>
-            {% endfor %}
-        </ul>
+    <p class="text-muted">{{ message }}</p>
     {% endif %}
+
 </body>
 </html>
