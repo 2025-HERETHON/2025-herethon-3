@@ -180,7 +180,7 @@ form{
 }
 
 
-#id_check{
+#check_user_id{
   display: flex;
   width: 118px;
   height: 55px;
@@ -189,7 +189,7 @@ form{
   align-items: center;
   gap: 10px;
 }
-#id_check span{
+#check_user_id span{
   color: var(--Gray-Gray06, #A6A6A6);
   text-align: center;
 
@@ -199,10 +199,10 @@ form{
   letter-spacing: -0.32px;
 }
 
-#id_check.active{
+#check_user_id.active{
   background-color: #2B66D0;
 }
-#id_check.active span {
+#check_user_id.active span {
   color: #EAF2FD;
 }
 
