@@ -126,9 +126,6 @@ STATICFILES_DIRS = [
 # 아래도 추가하세요 (정적 파일 서빙용)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # 배포용(개발에 영향 없음)
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 

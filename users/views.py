@@ -76,6 +76,24 @@ def login_view(request):
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+@csrf_exempt
+def check_user_id_view(request):
+    print("🔥 요청 도달:", request.method)
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            user_id = data.get('user_id', '').strip()
+
+            exists = get_user_model().objects.filter(username=user_id).exists()
+
+            return JsonResponse({
+                'exists': exists,
+                'message': '이미 사용 중인 아이디입니다.' if exists else '사용 가능한 아이디입니다!'
+            })
+        except Exception as e:
+            print("🚨 서버 에러:", e)
+            return JsonResponse({'error': '서버 처리 중 오류 발생'}, status=500)
+    return JsonResponse({'error': '허용되지 않은 메서드입니다.'}, status=405)
 def logout_view(request):
     
     # 로그아웃 처리

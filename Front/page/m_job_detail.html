@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직무 상세 리스트</title>
+    <link rel="stylesheet" href="../css/m_job_detail.css" />
+    <script src="../js/m_job_detail.js" defer></script>
+</head>
+<body>
+    <div id="Container">
+        <header>
+            <div id="TimeContainer">
+                <img id="Time" src="../img/Time.svg" />
+            </div>
+            <img id="Levels" src="../img/Levels.svg" />
+        </header>
+
+        <div id="HeadContainer">
+            <div id="recommendContainer">
+                <a href="">
+                    <img id="ArrowBtn" src="../img/arrow-left.svg" />
+                </a>
+                <div class="recommendText">
+                    <p>추천 직무 설명</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mainContainer">
+            <div class="info_container">
+                <div class="job_info1">
+                    <p><span class="highlight">“당신의 실험이 지구를 바꿔요.”</span></p>
+                </div>
+                <div class="job_info2"><p>친환경 소재의 기술적 대안에 관심 있는 당신에게 추천해요</p></div>
+            </div>
+
+            <p class="job_info3">지속가능 소재 연구원을 향한 여정</p>
+
+            <div class="detail_container">
+                <!-- 필요한 역량 -->
+                <div class="board">
+                    <div class="title">필요한 역량</div>
+                    <div class="scroll_container1" id="scrollBox1">
+                        <div class="badge1"><p>실험적 사고</p></div>
+                        <div class="badge1"><p>지속가능성에 대한 가치 인식</p></div>
+                        <div class="badge1"><p>성실한 탐구심</p></div>
+                    </div>
+                </div>
+                
+                <!-- 관련 전공 학과 -->
+                <div class="board">
+                    <div class="title">관련 전공 학과</div>
+                    <div class="scroll_container2" id="scrollBox2">
+                        <div class="badge2"><p>화학공학</p></div>
+                        <div class="badge2"><p>재료공학</p></div>
+                        <div class="badge2"><p>섬유공학</p></div>
+                    </div>
+                </div>
+
+                <!-- 진입 루트 -->
+                <div class="board3">
+                    <div class="title">진입 루트</div>
+                    <div class="list_container">
+                        <div class="list_box">
+                            <img class="groupBtn" src="../img/Group.svg">
+                            <div class="list_content"><p>환경 기업 인턴 경험</p></div>
+                        </div>
+                        <div class="list_box">
+                            <img class="groupBtn" src="../img/Group.svg">
+                            <div class="list_content"><p>소재 스타트업 프로젝트 참여</p></div>
+                        </div>
+                        <div class="list_box">
+                            <img class="groupBtn" src="../img/Group.svg">
+                            <div class="list_content"><p>친환경 브랜드 리서치팀 경험</p></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="board4">
+                    <Button type="button" id="rolemodelBtn"><p>관련 롤모델 보기 ▸</p></Button>
+                    <Button type="button" id="mainBtn"><p>메인 홈 이동</p></Button>
+                </div>
+            </div>
+        </div>
+
+        <Button class="floating_button" id="heartBtn">
+            <img id="heartImg" src="../img/heart.svg" alt="하트">
+        </Button>
+    </div>
+</body>
+</html>

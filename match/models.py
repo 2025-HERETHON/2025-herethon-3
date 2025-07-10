@@ -22,6 +22,8 @@ class Job(models.Model):
     stem_category = models.CharField(max_length=100)
     field_id = models.CharField(max_length=10)
     field_name = models.CharField(max_length=100)
+    emotive_copy = models.CharField(max_length=255, blank=True)
+    Soft_Skills = models.TextField(blank=True)
     
     # ManyToMany: 여러 직무가 여러 관심사에 연결됨
     related_tags = models.ManyToManyField(InterestTag)
