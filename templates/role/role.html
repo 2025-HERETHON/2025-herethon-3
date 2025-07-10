@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>롤모델 보기</title>
+    <style>
+        .role-card {
+            border: 1px solid #ccc;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
+        blockquote {
+            margin-top: 0.5rem;
+            font-style: italic;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>‘{{ job.job_name }}’ 관련 롤모델</h2>
+
+    {% if roles %}
+        <div class="role-list">
+            {% for role in roles %}
+                <div class="role-card">
+                    <h3>{{ role.role_name }}</h3>
+                    <p><strong>{{ role.role_title }}</strong></p>
+                    <p>{{ role.short_bio }}</p>
+                    <blockquote>“{{ role.quote }}”</blockquote>
+                    <p><a href="{{ role.original_url }}" target="_blank">원문 보기</a></p>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>아직 이 직무에 연결된 롤모델이 없어요.</p>
+    {% endif %}
+</body>
+</html>
