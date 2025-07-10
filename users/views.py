@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from jobs.models import UserLikedJob
-from jobs.models import Job
+from jobs.models import Job, InterestTag
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -101,12 +101,15 @@ def find_user_id_view(request):
 
 @login_required
 def home_view(request):
-   
+    interest_ids = request.session.get('interest_jobs', [])
+    interest_tags = InterestTag.objects.filter(tag_id__in=interest_ids).values_list('name', flat=True).distinct()
+    
     recent_ids = request.session.get('recent_jobs', [])
     recent_jobs = Job.objects.filter(job_id__in=recent_ids)
     return render(request, 'users/home.html', {
         'username': request.user.username,
-        'recent_jobs': recent_jobs
+        'recent_jobs': recent_jobs,
+        'recent_interests': ' · '.join(interest_tags) 
     })
 
 
