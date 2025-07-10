@@ -68,20 +68,21 @@ header {
   font-weight: 600;
   line-height: 24px; /* 133.333% */
   letter-spacing: -0.058px;
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
 }
 #recentInterest {
   margin-top: 15px;
   margin-left: 21px;
 
-  display: flex;  
+  display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 1;
-  line-clamp: 1; 
+  -webkit-line-clamp: 3;
   align-self: stretch;
-  overflow: hidden;
   color: var(--Gray-Gray08, #737373);
   text-overflow: ellipsis;
-  white-space: nowrap;
 
   /* Body/Body 3 */
   font-family: Pretendard;
@@ -93,8 +94,7 @@ header {
 }
 #recentJob {
   margin-top: 28px;
-  /*margin-left: 21px;*/
-  padding-left: 21px;
+  margin-left: 21px;
 
   align-self: stretch;
   color: var(--Gray-Gray10, #3f3f3f);
@@ -109,13 +109,10 @@ header {
 }
 #BoxContainer {
   margin-top: 15px;
-  /*margin-left: 15px;*/
-  padding-left: 21px; 
+  margin-left: 21px;
   display: flex;
   flex-direction: row;
   gap: 10px;
-  justify-content: flex-start;
-  
 }
 .Box {
   display: flex;
@@ -167,6 +164,11 @@ header {
   font-weight: 400;
   line-height: 18px; /* 225% */
   letter-spacing: -0.026px;
+}
+.Job-card-link {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit;         /* 글자 색 기존 그대로 유지 */
+  display: block;         /* div처럼 동작하게 */
 }
 .JobDetail {
   width: 136px;
@@ -220,7 +222,6 @@ header {
   border-radius: 30px;
   background: var(--Yellow-Primary, #2DD4BF);
 }
-
 .heart {
   display: flex;
   justify-content: flex-end;
@@ -317,4 +318,9 @@ footer div p {
 .search p,
 .my p {
   color: #979797;
+}
+
+.mypage-link {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit;         /* 글자 색 기존 그대로 유지 */
 }

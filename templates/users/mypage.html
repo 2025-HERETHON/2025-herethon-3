@@ -3,7 +3,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>홈</title>
+    <title>마이페이지</title>
     <style>
         .job-card-row {
             display: flex;
@@ -31,17 +31,36 @@
             font-size: 12px;
             color: #007aff;
         }
+
+        .logout-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 8px 16px;
+            background: #ff4d4f;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 14px;
+        }
     </style>
-<h3>저장한 직무 카드</h3>
-        <div class="job-card-row">
-            {% for like in liked_jobs %}
-                <div class="job-card">
-                    <div class="job-thumbnail">썸네일</div>
-                    <div class="job-title">{{ like.job.title }}</div>
-                    <div class="stem">{{ like.job.stem_category }}</div>
-                    <a href="{% url 'jobs:job_detail' like.job.job_id %}" class="more-btn">더보기 ></a>
-                </div>
-            {% empty %}
-                <p>저장한 직무가 없습니다.</p>
-            {% endfor %}
-        </div>
+</head>
+<body>
+    <h3>저장한 직무 카드</h3>
+
+    <div class="job-card-row">
+        {% for like in liked_jobs %}
+            <div class="job-card">
+                <div class="job-thumbnail">썸네일</div>
+                <div class="job-title">{{ like.job.title }}</div>
+                <div class="stem">{{ like.job.stem_category }}</div>
+                <a href="{% url 'jobs:job_detail' like.job.job_id %}" class="more-btn">더보기 ></a>
+            </div>
+        {% empty %}
+            <p>저장한 직무가 없습니다.</p>
+        {% endfor %}
+    </div>
+
+    <!-- 로그아웃 버튼 -->
+    <a href="{% url 'logout' %}" class="logout-btn">로그아웃</a>
+</body>
+</html>

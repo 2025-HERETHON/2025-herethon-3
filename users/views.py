@@ -118,18 +118,20 @@ def find_user_id_view(request):
 
 
 @login_required
+@login_required
 def home_view(request):
     interest_ids = request.session.get('interest_jobs', [])
-    interest_tags = InterestTag.objects.filter(tag_id__in=interest_ids).values_list('name', flat=True).distinct()
-    
-    recent_ids = request.session.get('recent_jobs', [])
-    recent_jobs = Job.objects.filter(job_id__in=recent_ids)
+    interest_tags = InterestTag.objects.filter(
+        tag_id__in=interest_ids
+    ).values_list('name', flat=True).distinct()
 
-    recent_jobs = recent_jobs[:2]
+    recent_ids = request.session.get('recent_jobs', [])
+    recent_jobs = Job.objects.filter(job_id__in=recent_ids)[:2]
+
     return render(request, 'users/home.html', {
         'username': request.user.username,
         'recent_jobs': recent_jobs,
-        'recent_interests': ' · '.join(interest_tags) 
+        'recent_interests': list(interest_tags),  # ✅ 리스트 그대로 넘김
     })
 
 

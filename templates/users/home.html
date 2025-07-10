@@ -23,33 +23,42 @@
 
     <div id="recentInterestText">최근 관심사</div>
     <div id="recentInterest">
-      환경/지속가능성 · 뷰티/패션 · AI/생성기술
+      {% if recent_interests %}
+      {% for tag in recent_interests %}
+      <span class="recentInterest">{{ tag }}</span>
+      {% endfor %}
+      {% else %}
+      <span class="recentInterest">최근 관심사가 없어요</span>
+      {% endif %}
     </div>
 
-    <div id="recentJob">최근 본 직무</div>
-    <div id="BoxContainer">
-      {% for job in recent_jobs %}
-        <div class="Box">
-          <div class="JobName">{{ job.job_name }}</div>
-          <div class="InterestContainer">
-            {% for tag in job.keyword_tags|split_by_space %}
-              <div class="Interest">{{ tag }}</div>
-            {% empty %}
-              <div class="Interest">#기타</div>
-            {% endfor %}
-          </div>
-          <div class="JobDetail">{{ job.job_description }}</div>
-          <div class="StemContainer">
-            {% for stem in job.stem_category|split_plus %}
-              <div class="Stem stem-{{ stem|lower }}">{{ stem }}</div>
-            {% endfor %}
-          </div>
-          <div class="heart">
-            <img src="{% static 'img/heart_filled.svg' %}" />
-          </div>
+   <div id="recentJob">최근 본 직무</div>
+<div id="BoxContainer">
+  {% for job in recent_jobs %}
+    <a href="{% url 'jobs:job_detail' job.job_id %}" class="Job-card-link">
+      <div class="Box">
+        <div class="JobName">{{ job.job_name }}</div>
+        <div class="InterestContainer">
+          {% for tag in job.keyword_tags|split_by_space %}
+            <div class="Interest">{{ tag }}</div>
+          {% empty %}
+            <div class="Interest">#기타</div>
+          {% endfor %}
         </div>
-      {% endfor %}
-    </div>
+        <div class="JobDetail">{{ job.job_description }}</div>
+        <div class="StemContainer">
+          {% for stem in job.stem_category|split_plus %}
+            <div class="Stem stem-{{ stem|lower }}">{{ stem }}</div>
+          {% endfor %}
+        </div>
+        <div class="heart">
+          <img src="{% static 'img/heart_filled.svg' %}" />
+        </div>
+      </div>
+    </a>
+  {% endfor %}
+</div>
+
 
     <div id="recentRolemodel">최근 본 롤모델</div>
     <div id="rolemodelBox">
@@ -71,7 +80,7 @@
         <p>탐색</p>
       </div>
       <div class="my">
-        <a href="{% url 'mypage' %}">
+        <a href="{% url 'mypage' %}" class="mypage-link">
           <img src="{% static 'img/NavMy.svg' %}" alt="">
           <p>마이</p>
         </a>
