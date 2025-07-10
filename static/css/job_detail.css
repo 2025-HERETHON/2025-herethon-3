@@ -3,6 +3,7 @@
     padding: 0;
     border: none;
     box-sizing: border-box;
+    text-decoration: none;
 }
 p{
     font-family: 'Pretendard', sans-serif;
@@ -224,7 +225,7 @@ header {
 
 
 /* 버튼 3개 */
-.floating_button {
+#like-button {
     position: absolute;
     top: 670px;  /* 원하는 위치 조절 */
     left: 290px; /* 원하는 위치 조절 */
@@ -241,7 +242,7 @@ header {
     z-index: 10;
 }
 
-.floating_button img {
+#like-button img {
     width: 24px;
     height: 24px;
 }
@@ -265,7 +266,7 @@ header {
     transition: background-color 0.3s ease;
 }
 
-#rolemodelBtn p{
+#rolemodelBtn a{
     color: var(--Navy-Navy08, #1B3F85);
     font-size: 14px;
     font-weight: 400;
@@ -275,7 +276,7 @@ header {
 #rolemodelBtn:hover{
     background-color: #1B3F85;  
 }
-#rolemodelBtn:hover p {
+#rolemodelBtn:hover a {
     color: #FFF;
 }
 
@@ -287,7 +288,7 @@ header {
     gap: 10px;
     background-color: white;
 }
-#mainBtn p{
+#mainBtn a{
     color: var(--Gray-Gray07, #8C8C8C);
     font-size: 14px;
     font-weight: 500;

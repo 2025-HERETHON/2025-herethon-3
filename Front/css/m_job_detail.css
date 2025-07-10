@@ -3,6 +3,7 @@
     padding: 0;
     border: none;
     box-sizing: border-box;
+    text-decoration: none;
 }
 p{
     font-family: 'Pretendard', sans-serif;
@@ -265,17 +266,18 @@ header {
     transition: background-color 0.3s ease;
 }
 
-#rolemodelBtn p{
+#rolemodelBtn a{
     color: var(--Navy-Navy08, #1B3F85);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px; /* 128.571% */
     letter-spacing: -0.045px;
+    
 }
 #rolemodelBtn:hover{
     background-color: #1B3F85;  
 }
-#rolemodelBtn:hover p {
+#rolemodelBtn:hover a {
     color: #FFF;
 }
 
@@ -287,7 +289,7 @@ header {
     gap: 10px;
     background-color: white;
 }
-#mainBtn p{
+#mainBtn a{
     color: var(--Gray-Gray07, #8C8C8C);
     font-size: 14px;
     font-weight: 500;
