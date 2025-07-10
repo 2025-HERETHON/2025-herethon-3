@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관심사 선택 페이지 - 최초 진입</title>
+    <link rel="stylesheet" href="{% static 'css/interest_selection_intro.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+
+
+</head>
+
+<body>
+    <div id="Container">
+        <header>
+            <div class="time">9:41</div>
+            <div class="icons">
+                <img src="{% static 'img/Levels.svg' %}" alt="">
+            </div>
+        </header>
+
+        <main>
+            <div class="logo">
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <div class="title">
+                <h1>어떤 주제에 관심이 있나요?</h1>
+                <p>나의 관심사를 골라보세요.</p>
+            </div>
+
+            <form method="POST" action="{% url 'interests' %}">
+                {% csrf_token %}
+                <input type="hidden" name="interests" id="interestsInput">
+
+                <div class="tags">
+                    <button type="button" class="tag">환경/지속가능성</button>
+                    <button type="button" class="tag">대중문화/엔터</button>
+                    <button type="button" class="tag">뷰티/패션</button>
+                    <button type="button" class="tag">커뮤니티/소셜네트워킹</button>
+                    <button type="button" class="tag">커리어/교육</button>
+                    <button type="button" class="tag">여행/로컬문화</button>
+                    <button type="button" class="tag">사회문제 해결</button>
+                    <button type="button" class="tag">디자인/미적경험</button>
+                    <button type="button" class="tag">금융/자산관리</button>
+                    <button type="button" class="tag">동물/자연</button>
+                    <button type="button" class="tag">건강/웰니스</button>
+                    <button type="button" class="tag">AI/생성기술</button>
+                    <button type="button" class="tag">정치/사회참여</button>
+                    <button type="button" class="tag">소비 트렌드</button>
+                    <button type="button" class="tag">창작/창의활동</button>
+                </div>
+
+                <div class="submit_btn">
+                    <button type="submit" id="submit_btn">관심사 선택 후 추천 받기</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+    <script src="{% static 'js/interest_selection.js' %}"></script>
+</body>
+
+</html>

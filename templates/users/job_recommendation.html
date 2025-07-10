@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+    {% load json_script %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직무 추천 리스트</title>
+    <link rel="stylesheet" href="{% static 'css/job_recommendation.css' %}">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+
+
+</head>
+
+<body>
+    <div id="Container">
+        <div class="status_bar">
+            <div class="time">9:41</div>
+            <div class="icons">
+                <img src="{% static 'img/Levels.svg' %}" alt="">
+            </div>
+        </div>
+
+        <header>
+            <div class="back">
+                <img src="{% static 'img/back.svg' %}" alt="">
+            </div>
+            <div class="job_recommendation">
+                <h1>추천 직무</h1>
+            </div>
+        </header>
+
+        <main>
+            <div class="title">
+                <h1>이런 직무가 어울려요</h1>
+                <p>가장 어울리는 직무 3가지를 골라봤어요.</p>
+            </div>
+
+            <div class="tags"></div>
+
+            <div class="card_container"></div>
+
+        </main>
+
+        {{ interests|json_script:"interests-data" }}
+
+    </div>
+
+    <script>
+        const GO_ICON_URL = "{% static 'img/go.svg' %}";
+
+        const userData = {
+            userID: "{{ request.user.username|default:'guest' }}",
+            interests: JSON.parse(document.getElementById("interests-data").textContent)
+        };
+    </script>
+
+    <script src="{% static 'js/job_recommendation.js' %}"></script>
+</body>
+
+</html>
