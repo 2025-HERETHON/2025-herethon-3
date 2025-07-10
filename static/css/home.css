@@ -113,12 +113,14 @@ header {
 /* 직무 섹션 */
 #BoxContainer {
   margin-top: 15px;
-  justify-content: flex-start;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;           /* ✅ 줄바꿈 허용 */
+  flex-wrap: wrap;
+  justify-content: flex-start;  /* <-- ✅ 왼쪽 정렬 유지 */
   gap: 10px;
-  max-width: 100%;           /* ✅ 부모 영역 넘지 않도록 */
+  width: 100%;                  /* ✅ 가로 공간 꽉 차게 */
+  padding: 0 16px;              /* ✅ 좌우 여백 맞추기 */
+  box-sizing: border-box;       /* ✅ padding 포함 */
 }
 
 /* 카드 박스 */
