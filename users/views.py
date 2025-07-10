@@ -84,7 +84,7 @@ def check_user_id_view(request):
             data = json.loads(request.body.decode('utf-8'))
             user_id = data.get('user_id', '').strip()
 
-            exists = get_user_model().objects.filter(username=user_id).exists()
+            exists = get_user_model().objects.filter(user_id=user_id).exists()
 
             return JsonResponse({
                 'exists': exists,
