@@ -1,71 +1,64 @@
 {% load static %}
 {% load custom_filters %}
-{% load custom_filters %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link type="text/css" rel="stylesheet" href="{% static 'css/home.css' %}" />
+ 
 </head>
-<body>
+<body> <link rel="stylesheet" href="{% static 'css/home.css' %}" />
   <div id="Container">
     <header>
       <div id="TimeContainer">
-        <img id="Time" src="{% static 'img/Time.svg' %}" />
+        <img id="Time" src="{% static 'img/Time.svg'%}" />
       </div>
-      <img id="Levels" src="{% static 'img/Levels.svg' %}" />
+      <img id="Levels" src="{%static 'img/Levels.svg'%}" />
     </header>
 
-    <div id="welcome">👋 환영합니다, {{ user.name }}님</div>
+    <div id="welcome">👋 환영합니다, kcw님!</div>
     <div id="recentText">최근 본 직무들을 다시 탐색해보세요!</div>
 
     <div id="recentInterestText">최근 관심사</div>
     <div id="recentInterest">
-        {% if recent_interests %}
-            {% for tag in recent_interests|split_by_space %}
-            <div class="Interest">{{ tag }}</div>
-            {% endfor %}
-        {% else %}
-            <div class="Interest">#기타</div>
-        {% endif %}
+      환경/지속가능성 · 뷰티/패션 · AI/생성기술
     </div>
 
     <div id="recentJob">최근 본 직무</div>
-
     <div id="BoxContainer">
       {% for job in recent_jobs %}
-      <div class="Box">
-        <div class="JobName">{{ job.job_name }}</div>
-        <div class="InterestContainer">
-             {% for tag in job.keyword_tags|split_by_space %}
-             <div class="Interest">{{ tag }}</div>
-             {% empty %}
-             <div class="Interest">#기타</div>
-             {% endfor %}
-        </div>
-        <div class="JobDetail">{{ job.job_description }}</div>
-        <div class="StemContainer">
-            {% for stem in job.stem_category|split_plus %}
-            <div class="Stem stem-{{ stem|lower }}">{{ stem }}</div>
+        <div class="Box">
+          <div class="JobName">{{ job.job_name }}</div>
+          <div class="InterestContainer">
+            {% for tag in job.keyword_tags|split_by_space %}
+              <div class="Interest">{{ tag }}</div>
+            {% empty %}
+              <div class="Interest">#기타</div>
             {% endfor %}
+          </div>
+          <div class="JobDetail">{{ job.job_description }}</div>
+          <div class="StemContainer">
+            {% for stem in job.stem_category|split_plus %}
+              <div class="Stem stem-{{ stem|lower }}">{{ stem }}</div>
+            {% endfor %}
+          </div>
+          <div class="heart">
+            <img src="{% static 'img/heart_filled.svg' %}" />
+          </div>
         </div>
-
-        <div class="heart">
-          <img src="{% static 'img/heart_filled.svg' %}" />
-        </div>
-      </div>
       {% endfor %}
     </div>
 
-    
-
     <div id="recentRolemodel">최근 본 롤모델</div>
     <div id="rolemodelBox">
-      <div id="rolemodel">👩‍🔬 [정하린 연구원] “패션과 과학을 잇는 소재공학자 이야기”</div>
-      <div id="replay">다시 보기 <img src="{% static 'img/rightArrow.svg' %}" /></div>
+      <div id="rolemodel">
+        👩‍🔬 [정하린 연구원] “패션과 과학을 잇는 소재공학자 이야기”
+      </div>
+      <div id="replay">
+        다시 보기 <img src="{% static 'img/rightArrow.svg' %}" />
+      </div>
     </div>
 
     <footer>
@@ -79,11 +72,10 @@
       </div>
       <div class="my">
         <a href="{% url 'mypage' %}">
-        <img src="{% static 'img/NavMy.svg' %}" alt="">
-        <p>마이</p>
+          <img src="{% static 'img/NavMy.svg' %}" alt="">
+          <p>마이</p>
         </a>
       </div>
-
     </footer>
   </div>
 </body>

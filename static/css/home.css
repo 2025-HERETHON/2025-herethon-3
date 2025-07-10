@@ -73,7 +73,7 @@ header {
   margin-top: 15px;
   margin-left: 21px;
 
-  display: -webkit-box;
+  display: flex;  
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   line-clamp: 1; 
@@ -212,13 +212,13 @@ header {
   border-radius: 30px;
   background: var(--Purple-Primary, #a78bfa);
 }
-.stme-engineering {
+.stem-engineering {
   border-radius: 30px;
   background: var(--Mint-Primary, #FACC15);
 }
 .stem-math {
   border-radius: 30px;
-  background: var(--Yellow-Primary, #f9e79f);
+  background: var(--Yellow-Primary, #2DD4BF);
 }
 
 .heart {
