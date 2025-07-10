@@ -7,6 +7,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  border: 1px solid var(--Gray-Primary, #d9d9d9);
 }
 
 header {

@@ -94,12 +94,14 @@ def check_user_id_view(request):
             print("🚨 서버 에러:", e)
             return JsonResponse({'error': '서버 처리 중 오류 발생'}, status=500)
     return JsonResponse({'error': '허용되지 않은 메서드입니다.'}, status=405)
-def logout_view(request):
-    
-    # 로그아웃 처리
-    logout(request)
-    return redirect('home')
 
+def logout_view(request):
+    print("✅ logout_view 진입함")  # 서버 콘솔에 출력 확인
+    logout(request)
+    return redirect('onboarding')
+
+def onboarding_view(request):
+    return render(request, 'users/onboarding.html')
 
 # 아이디 찾기
 def find_user_id_view(request):
@@ -117,7 +119,7 @@ def find_user_id_view(request):
     return render(request, 'users/find_user_id.html', {'user_id_result': user_id_result})
 
 
-@login_required
+
 @login_required
 def home_view(request):
     interest_ids = request.session.get('interest_jobs', [])
@@ -136,7 +138,7 @@ def home_view(request):
 
 
 def mypage_view(request):
-    liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:3]  # 최대 3개
+    liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:2]  # 최대 3개
     
     return render(request, 'users/mypage.html', {
         'liked_jobs': liked_jobs,       

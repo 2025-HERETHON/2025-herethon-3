@@ -1,66 +1,102 @@
-<!-- 백엔드 테스트용 -->
+{% load static %}
+{% load custom_filters %}
+
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>마이페이지</title>
-    <style>
-        .job-card-row {
-            display: flex;
-            gap: 12px;
-            margin-top: 16px;
-        }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My</title>
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" />
+  </head>
+  <body>
+    <div id="Container">
+      <header>
+        <div id="TimeContainer">
+          <img id="Time" src="{% static 'img/Time.svg'%}" />
+        </div>
+        <img id="Levels" src="{%static 'img/Levels.svg'%}" />
+      </header>
 
-        .job-card {
-            width: 150px;
-            height: 180px;
-            border: 1px solid #ccc;
-            padding: 10px;
-            border-radius: 8px;
-            text-align: center;
-        }
+      <div id="welcome">My</div>
 
-        .job-thumbnail {
-            width: 100%;
-            height: 80px;
-            background: #eee;
-            margin-bottom: 8px;
-        }
+      <!-- ❗직무가 없을 때 보여지는 안내 -->
+      <div id="emptyJobSection" style="display: none">
+        <img id="heartArrow" src="{% static 'img/heart_arrow.svg'%}" alt="arrowheart" />
+        <div id="job0">아직 마음에 담아둔 직무가 없어요.</div>
+        <div id="recommand">
+          관심이 스친 직무를 찜해두면, 나만의 여정이 시작돼요.
+        </div>
+      </div>
 
-        .more-btn {
-            font-size: 12px;
-            color: #007aff;
-        }
+      <div id="recentJob">찜해둔 관심 직무</div>
+<div id="BoxContainer">
+  {% for like in liked_jobs %}
+    <a href="{% url 'jobs:job_detail' like.job.job_id %}" class="Job-card-link" style="text-decoration: none; color: inherit;">
+      <div class="Box">
+        <div class="JobName">{{ like.job.job_name}}</div>
+        <div class="InterestContainer">
+          {% for tag in like.job.keyword_tags|split_by_space %}
+            <div class="Interest">{{ tag }}</div>
+          {% empty %}
+            <div class="Interest">#기타</div>
+          {% endfor %}
+        </div>
+        <div class="JobDetail">{{ like.job.job_description }}</div>
+        <div class="StemContainer">
+          {% for stem in like.job.stem_category|split_plus %}
+            <div class="Stem stem-{{ stem|lower }}">{{ stem }}</div>
+          {% endfor %}
+        </div>
+        <div class="heart">
+          <img src="{% static 'img/heart_filled.svg' %}" />
+        </div>
+      </div>
+    </a>
+  {% empty %}
+    <p>저장한 직무가 없습니다.</p>
+  {% endfor %}
+</div>
 
-        .logout-btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 8px 16px;
-            background: #ff4d4f;
-            color: white;
-            border-radius: 6px;
-            text-decoration: none;
-            font-size: 14px;
-        }
-    </style>
-</head>
-<body>
-    <h3>저장한 직무 카드</h3>
 
-    <div class="job-card-row">
-        {% for like in liked_jobs %}
-            <div class="job-card">
-                <div class="job-thumbnail">썸네일</div>
-                <div class="job-title">{{ like.job.title }}</div>
-                <div class="stem">{{ like.job.stem_category }}</div>
-                <a href="{% url 'jobs:job_detail' like.job.job_id %}" class="more-btn">더보기 ></a>
-            </div>
-        {% empty %}
-            <p>저장한 직무가 없습니다.</p>
-        {% endfor %}
+      <button id="logout">LOGOUT</button>
+
+     <footer>
+  <div class="nav-item">
+    <a href="{% url 'home' %}">
+      <img src="{% static 'img/NavHome.svg' %}" alt="home" />
+      <p>홈</p>
+    </a>
+  </div>
+  <div class="nav-item">
+    <a href="{% url 'match:m_job_select' %}">
+      <img src="{% static 'img/NavSearch.svg' %}" alt="search" />
+      <p>탐색</p>
+    </a>
+  </div>
+  <div class="nav-item">
+    
+      <img src="{% static 'img/NavMy.svg' %}" alt="my" />
+      <p>마이</p>
+    </a>
+  </div>
+</footer>
+
+
+
+      <!-- 오버레이 + 로그아웃 모달 -->
+      <div id="overlay" style="display: none"></div>
+      <div id="logoutBox" style="display: none">
+        <img id="warning" src="{% static 'img/warning.svg'%}" alt="warning" />
+        <div id="question">로그아웃하시겠습니까?</div>
+        <div id="remainText">지금까지 저장한 정보는 유지돼요.</div>
+        <div id="buttonContainer">
+          <button class="logoutBtn" id="cancel">취소</button>
+          <button class="logoutBtn" id="confirm" data-logout-url="{% url 'logout' %}">로그아웃</button>
+
+        </div>
+      </div>
     </div>
-
-    <!-- 로그아웃 버튼 -->
-    <a href="{% url 'logout' %}" class="logout-btn">로그아웃</a>
-</body>
+    <script src="{% static 'js/mypage.js' %}"></script>
+  </body>
 </html>
