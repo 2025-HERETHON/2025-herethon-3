@@ -5,7 +5,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from jobs.models import UserLikedJob
-from jobs.models import Job
+from jobs.models import Job, InterestTag
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 # Create your views here.
 
@@ -32,39 +34,66 @@ def signup_view(request):
         })
 
 # 아이디 중복 체크
+@csrf_exempt
 def check_user_id_view(request):
+    print("🔥 요청 도달:", request.method)
     if request.method == 'POST':
-        user_id = request.POST.get('user_id')
-        exists = get_user_model().objects.filter(user_id=user_id).exists()
-        if exists:
-            return JsonResponse({'exists': True, 'message': '이미 사용 중인 아이디입니다.'})
-        else:
-            return JsonResponse({'exists': False, 'message': '사용 가능한 아이디입니다!'})
-    else:
-        return JsonResponse({'error': '허용되지 않은 요청 방식입니다.'}, status=405)
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            user_id = data.get('user_id', '').strip()
+
+            exists = get_user_model().objects.filter(user_id=user_id).exists()
+
+            return JsonResponse({
+                'exists': exists,
+                'message': '이미 사용 중인 아이디입니다.' if exists else '사용 가능한 아이디입니다!'
+            })
+        except Exception as e:
+            print("🚨 서버 에러:", e)
+            return JsonResponse({'error': '서버 처리 중 오류 발생'}, status=500)
+    return JsonResponse({'error': '허용되지 않은 메서드입니다.'}, status=405)
 
 
 
-
+@csrf_exempt  # CSRF 토큰을 우회하려면 이 데코레이터가 필요합니다. (그러나 배포 환경에서는 CSRF를 비활성화하지 마세요)
 def login_view(request):
-    if request.method == 'GET':
-        return render(request, 'users/login.html', {'form': LoginForm()})
-    else:
-        form = LoginForm(request, data=request.POST)
-        if form.is_valid():
-            user_id = form.cleaned_data.get('username')  # ← 여기 반드시 'username'
-            password = form.cleaned_data.get('password')
-            user = authenticate(request, username=user_id, password=password)  # 'username' 파라미터로 전달
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다.'})
+    if request.method == "GET":
+        return render(request, 'users/login.html')  # 로그인 폼 렌더링
+
+    elif request.method == "POST":
+        data = json.loads(request.body)  # POST 데이터 읽기
+        user_id = data.get('user_id')
+        password = data.get('password')
+
+        user = authenticate(request, user_id=user_id, password=password)
+
+        if user is not None:
+            login(request, user)  # 로그인 성공
+            return JsonResponse({'success': True})  # 성공한 경우 JSON 응답
         else:
-            return render(request, 'users/login.html', {'form': form, 'error': '유효하지 않은 정보입니다.'})
+            return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=400)
+
+    return JsonResponse({'error': 'Invalid request'}, status=400)
 
 
+@csrf_exempt
+def check_user_id_view(request):
+    print("🔥 요청 도달:", request.method)
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body.decode('utf-8'))
+            user_id = data.get('user_id', '').strip()
 
+            exists = get_user_model().objects.filter(username=user_id).exists()
+
+            return JsonResponse({
+                'exists': exists,
+                'message': '이미 사용 중인 아이디입니다.' if exists else '사용 가능한 아이디입니다!'
+            })
+        except Exception as e:
+            print("🚨 서버 에러:", e)
+            return JsonResponse({'error': '서버 처리 중 오류 발생'}, status=500)
+    return JsonResponse({'error': '허용되지 않은 메서드입니다.'}, status=405)
 def logout_view(request):
     
     # 로그아웃 처리
@@ -90,12 +119,15 @@ def find_user_id_view(request):
 
 @login_required
 def home_view(request):
-   
+    interest_ids = request.session.get('interest_jobs', [])
+    interest_tags = InterestTag.objects.filter(tag_id__in=interest_ids).values_list('name', flat=True).distinct()
+    
     recent_ids = request.session.get('recent_jobs', [])
     recent_jobs = Job.objects.filter(job_id__in=recent_ids)
     return render(request, 'users/home.html', {
         'username': request.user.username,
-        'recent_jobs': recent_jobs
+        'recent_jobs': recent_jobs,
+        'recent_interests': ' · '.join(interest_tags) 
     })
 
 

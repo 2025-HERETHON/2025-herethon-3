@@ -1,0 +1,147 @@
+#Container {
+  margin: 0 auto;
+  width: 375px;
+  height: 812px;
+  background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+header {
+  width: 100%;
+  padding: 9px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 106.87px;
+}
+#TimeContainer {
+  display: flex;
+  padding: 18.34px 0px 13.66px 0px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+}
+#BackBtnContainer {
+  position: absolute;
+  top: 57px;
+  left: -3px;
+  width: 30px;
+  height: 57px;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+#BackBtn {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+#Logo {
+  color: #000;
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 56px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: -0.32px;
+  margin-top: 50px;
+  margin-bottom: 16px;
+}
+.InputBox {
+  display: flex;
+  width: 343px;
+  height: 55px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  border: 1px solid #bfbfbf;
+  transition: opacity 0.1s ease;
+}
+.InputBox.show {
+  border: 1px solid var(--Red-Primary, #ff5b4d);
+}
+input {
+  display: flex;
+  width: 250px;
+  height: 20px;
+  padding: 10px 20px;
+  align-items: center;
+  gap: 10px;
+  align-self: stretch;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  caret-color: var(--Navy-NavyToneup, #2b66d0);
+}
+
+button {
+  display: flex;
+  width: 343px;
+  height: 55px;
+  padding: 10px 24px;
+  margin-top: 40px;
+
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: none;
+  background: var(--Navy-NavyToneup, #2b66d0);
+
+  color: var(--Navy-Navy01, #eaf2fd);
+  text-align: center;
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.32px;
+}
+#searchContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--Gray-Gray07, #8c8c8c);
+  text-align: center;
+  margin-top: 20px;
+
+  /* Body/Body 4 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+}
+
+#Error {
+  color: var(--Red-Primary, #ff5b4d);
+  text-align: start;
+
+  /* Body/Body 4 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+
+  margin-top: 5px;
+  position: absolute;
+  left: 20px;
+  top: 355px;
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+#Error.show {
+  opacity: 1;
+}

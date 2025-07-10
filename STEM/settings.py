@@ -127,6 +127,9 @@ STATICFILES_DIRS = [
 # 아래도 추가하세요 (정적 파일 서빙용)
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # 배포용(개발에 영향 없음)
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
@@ -152,8 +155,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.naver.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'loveah1230@naver.com'
-EMAIL_HOST_PASSWORD = 'Z6PG42GL3WMR'
+EMAIL_HOST_USER = '@naver.com'
+EMAIL_HOST_PASSWORD = ''
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # 개발용 임시 설정 (개발 서버일 경우 localhost 사용)

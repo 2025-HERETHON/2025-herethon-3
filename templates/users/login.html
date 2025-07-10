@@ -1,37 +1,49 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>로그인</title>
-</head>
-<body>
-    <h2>로그인</h2>
-    
-    <form method="POST">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+  <body>
+    <div id="Container">
+      <header>
+        <div id="TimeContainer">
+          <img id="Time" src="{% static 'img/Time.svg' %}" />
+        </div>
+        <img id="Levels" src="{% static 'img/Levels.svg' %}" />
+      </header>
+      <div id="BackBtnContainer" onclick="location.href='onBoarding.html'">
+        <img id="BackBtn" src="{% static 'img/backBtn.svg' %}" />
+      </div>
+      <div id="Logo">로고</div>
+
+      <!-- 로그인 폼 -->
+      <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
         
-        {% if form.non_field_errors %}
-            <p style="color:red;">{{ form.non_field_errors }}</p>
-        {% endif %}
-        
-        <div>
-            <label for="{{ form.username.id_for_label }}">아이디:</label>
-            {{ form.username }}
+        <!-- 아이디 입력 필드 -->
+        <div class="InputBox">
+          <input id="ID" name="user_id" placeholder="아이디 입력" required />
         </div>
 
-        <div>
-            <label for="{{ form.password.id_for_label }}">비밀번호:</label>
-            {{ form.password }}
+        <!-- 비밀번호 입력 필드 -->
+        <div class="InputBox">
+          <input id="PW" name="password" type="password" placeholder="비밀번호 입력" required />
         </div>
 
-        {% if error %}
-            <p style="color:red;">{{ error }}</p>
-        {% endif %}
+        <!-- 에러 메시지 (초기에는 숨김) -->
+        <div id="Error" style="display: none;">아이디 또는 비밀번호를 다시 확인해주세요.</div>
 
-        <button type="submit">로그인</button>
-    </form>
+        <!-- 로그인 버튼 -->
+        <button id="loginBtn" type="submit">로그인</button>
+      </form>
 
-    <p><a href="{% url 'signup' %}">회원가입</a></p>
-    <p><a href="{% url 'find_user_id' %}">아이디 찾기</a> | <a href="{% url 'password_reset' %}">비밀번호 찾기</a></p>
-</body>
+      <div id="searchContainer">아이디 찾기 l 비밀번호 찾기</div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+  </body>
 </html>
