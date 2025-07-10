@@ -128,7 +128,7 @@ main {
 .card_container {
     display: flex;
     overflow-x: auto;
-    gap: 15px;
+    gap: 1px;
     padding: 0 20px 20px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
@@ -148,7 +148,14 @@ main {
     width: 300px;
     height: 346px;
     margin-top: 25px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: scale(0.9);
 }
+
+.job_card.active {
+    transform: scale(1);
+  }
+  
 
 .job_card h2 {
     font-size: 20px;
@@ -191,21 +198,41 @@ main {
     margin-top: 30px;
 }
 
+.badge_group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin: 40px 25px 5px 30px;
+    font-weight: 500;
+    font-size: 15px;
+}
+
 .badge {
-    position: absolute;
-    top: 236px;
-    left: 22px;
-    background-color: #98D3FB;
-    color: #F1F9FF;
-    gap: 10px;
-    padding: 1px 3px;
+    padding: 4px 10px;
     border-radius: 20px;
     font-size: 12px;
-    font-weight: 500;
-    line-height: 23px;
-    width: 64px;
-    height: 23px;
-    text-align: center;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.badge.science {
+    background-color: #98D3FB;
+    color: #F1F9FF;
+}
+
+.badge.tech {
+    background-color: #A78BFA;
+    color: #F1F9FF;
+}
+
+.badge.engineering {
+    background-color: #FACC15;
+    color: #F1F9FF;
+}
+
+.badge.math {
+    background-color: #2DD4BF;
+    color: #F1F9FF;
 }
 
 .index_badge {
