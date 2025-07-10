@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('users.urls')),
     path('jobs/', include('jobs.urls', namespace='jobs')),
     path('match/', include('match.urls', namespace='match')),
+    path('role/', include('role.urls', namespace='role')),
 ]
 
 if settings.DEBUG:
