@@ -15,9 +15,10 @@
         </div>
         <img id="Levels" src="{% static 'img/Levels.svg' %}" />
       </header>
-      <div id="BackBtnContainer" onclick="location.href='onBoarding.html'">
-        <img id="BackBtn" src="{% static 'img/backBtn.svg' %}" />
-      </div>
+      <a href="{% url 'onboarding' %}" id="BackBtnContainer">
+  <img id="BackBtn" src="{% static 'img/backBtn.svg' %}" />
+</a>
+
       <div id="Logo">로고</div>
 
       <!-- 로그인 폼 -->
