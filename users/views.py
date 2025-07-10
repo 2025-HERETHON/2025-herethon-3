@@ -124,6 +124,8 @@ def home_view(request):
     
     recent_ids = request.session.get('recent_jobs', [])
     recent_jobs = Job.objects.filter(job_id__in=recent_ids)
+
+    recent_jobs = recent_jobs[:2]
     return render(request, 'users/home.html', {
         'username': request.user.username,
         'recent_jobs': recent_jobs,
@@ -133,7 +135,7 @@ def home_view(request):
 
 def mypage_view(request):
     liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:3]  # 최대 3개
-    # 세션에 저장된 최근 본 직무 리스트 가져오기
+    
     return render(request, 'users/mypage.html', {
         'liked_jobs': liked_jobs,       
         'username': request.user.username,
