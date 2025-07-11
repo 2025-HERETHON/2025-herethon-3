@@ -5,7 +5,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}" />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="{% static 'css/login.css' %}"
+    />
   </head>
   <body>
     <div id="Container">
@@ -19,12 +23,12 @@
         <img id="BackBtn" src="{% static 'img/backBtn.svg' %}" />
       </a>
 
-      <div id="Logo">로고</div>
+      <img id="Logo" src="{% static 'img/logo.png' %}" />
 
       <!-- 로그인 폼 -->
-      <form method="POST" action="{% url 'login' %}">
+      <form id="InputContainer" method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        
+
         <!-- 아이디 입력 필드 -->
         <div class="InputBox">
           <input id="ID" name="user_id" placeholder="아이디 입력" required />
@@ -32,11 +36,19 @@
 
         <!-- 비밀번호 입력 필드 -->
         <div class="InputBox">
-          <input id="PW" name="password" type="password" placeholder="비밀번호 입력" required />
+          <input
+            id="PW"
+            name="password"
+            type="password"
+            placeholder="비밀번호 입력"
+            required
+          />
         </div>
 
         <!-- 에러 메시지 (초기에는 숨김) -->
-        <div id="Error" style="display: none;">아이디 또는 비밀번호를 다시 확인해주세요.</div>
+        <div id="Error" style="display: none">
+          아이디 또는 비밀번호를 다시 확인해주세요.
+        </div>
 
         <!-- 로그인 버튼 -->
         <button id="loginBtn" type="submit">로그인</button>

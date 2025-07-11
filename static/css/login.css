@@ -42,16 +42,12 @@ header {
   margin-left: 12px;
 }
 #Logo {
-  color: #000;
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 56px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.32px;
-  margin-top: 50px;
-  margin-bottom: 16px;
+  width: 129px;
+  height: 34px;
+  margin-bottom: 24px;
+}
+#InputContainer {
+  margin-top: 104px;
 }
 .InputBox {
   display: flex;
@@ -106,6 +102,8 @@ button {
   font-weight: 600;
   line-height: 24px; /* 133.333% */
   letter-spacing: -0.32px;
+
+  cursor: pointer;
 }
 #searchContainer {
   display: flex;
