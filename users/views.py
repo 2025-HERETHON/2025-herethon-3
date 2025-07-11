@@ -72,7 +72,7 @@ def login_view(request):
             login(request, user)  # 로그인 성공
             return JsonResponse({'success': True})  # 성공한 경우 JSON 응답
         else:
-            return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=400)
+            return JsonResponse({'success': False, 'error': '아이디 또는 비밀번호를 다시 확인해주세요.'}, status=200)
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 

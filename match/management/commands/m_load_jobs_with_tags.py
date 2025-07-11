@@ -22,7 +22,7 @@ class Command(BaseCommand):
                         'recommend_reason': row['recommend_reason'],
                         'stem_category': row['stem_category'],
                         'field_id': row['field_id'],
-                        'field_name': row.get('field_name', '')  # 있으면 쓰고 없으면 공백
+                        'field_name': row.get('field_name', '')
                     }
                 )
 

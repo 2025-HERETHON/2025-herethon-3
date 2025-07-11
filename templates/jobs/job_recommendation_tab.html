@@ -2,79 +2,135 @@
 <html lang="en">
 
 <head>
-    {% load static %}
+  {% load static %}
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>직무 추천 리스트 - 탐색 서치</title>
-    <link rel="stylesheet" href="{% static 'css/job_recommendation_tab.css' %}">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>직무 추천 리스트 - 탐색 서치</title>
+  <link rel="stylesheet" href="{% static 'css/job_recommendation_tab.css' %}">
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
 
 
 </head>
 
 <body>
-    <div id="Container">
-        <div class="status_bar">
-            <div class="time">9:41</div>
-            <div class="icons">
-                <img src="{% static 'img/Levels.svg' %}" alt="">
-            </div>
-        </div>
-
-        <header>
-            <div class="back">
-                <img src="{% static 'img/back.svg' %}" alt="">
-            </div>
-            <div class="job_recommendation">
-                <h1>추천 직무</h1>
-            </div>
-        </header>
-
-        <main>
-            <div class="title">
-                <h1>이런 직무가 어울려요</h1>
-                <p>가장 어울리는 직무 3가지를 골라봤어요.</p>
-            </div>
-
-            <div class="tags"></div>
-
-            <div class="card_container"></div>
-        </main>
-
-        <div id="interest-data" data-interests="{{ interests|join:',' }}"></div>
-        <footer>
-            <div class="home">
-                <img src="{% static 'img/home.svg' %}" alt="">
-                <p>홈</p>
-            </div>
-            <div class="search">
-                <img src="{% static 'img/search.svg' %}" alt="">
-                <p>탐색</p>
-            </div>
-            <div class="my">
-                <img src="{% static 'img/my.svg' %}" alt="">
-                <p>마이</p>
-            </div>
-        </footer>
-
+  <div id="Container">
+    <div class="status_bar">
+      <div class="time">9:41</div>
+      <div class="icons">
+        <img src="{% static 'img/Levels.svg' %}" alt="">
+      </div>
     </div>
 
-    <script>
-        const interestDataEl = document.getElementById("interest-data");
-        const interests = interestDataEl.dataset.interests.split(',');
+    <header>
+      <div class="back">
+        <img src="{% static 'img/back.svg' %}" alt="">
+      </div>
+      <div class="job_recommendation">
+        <h1>추천 직무</h1>
+      </div>
+    </header>
 
-        const userData = {
-            userID: "{{ request.user.username|default:'guest' }}",
-            interests: interests
-        };
+    <main>
+      <div class="title">
+        <h1>이런 직무가 어울려요</h1>
+        <p>가장 어울리는 직무 3가지를 골라봤어요.</p>
+      </div>
 
-        const GO_ICON_URL = "{% static 'img/go.svg' %}";
+      <!-- 선택된 관심사 출력 -->
+      <div class="tags">
+        {% if selected_tags %}
+        {% for tag in selected_tags %}
+        <button class="tag">{{ tag.tag_name }}</button>
+        {% endfor %}
+        {% else %}
+        <p>선택된 관심사가 없습니다.</p>
+        {% endif %}
+      </div>
 
-    </script>
+      <!-- 추천된 직무 출력 -->
+      <div class="card_container">
+        {% if jobs %}
+        {% for job in jobs %}
+        <div class="job_card" data-tags="{{ job.keyword_tags }}" data-categories="{{ job.stem_category }}">
+          <div class="index_badge">{{ forloop.counter }}/3</div>
+          <h2>{{ job.job_name }}</h2>
 
-    <script src="{% static 'js/job_recommendation.js' %}"></script>
+          <div class="job_tags"></div>
+          <div class="job_desc">{{ job.job_description }}</div>
+          <div class="badge_group"></div>
+
+          <a href="{% url 'jobs:job_detail' job.job_id %}" class="detail_btn">
+            보러 가기 <img src="{% static 'img/go.svg' %}" alt=">" class="go" />
+          </a>
+        </div>
+        {% endfor %}
+        {% else %}
+        <p>추천된 직무가 없습니다.</p>
+        {% endif %}
+      </div> <!-- ✅ 이게 딱 for문/if문 끝나고 나와야 해 -->
+    </main>
+
+    <div id="interest-data" data-interests="{{ interests|join:',' }}"></div>
+    <footer>
+      <div class="home">
+        <img src="{% static 'img/home.svg' %}" alt="">
+        <p>홈</p>
+      </div>
+      <div class="search">
+        <img src="{% static 'img/search.svg' %}" alt="">
+        <p>탐색</p>
+      </div>
+      <div class="my">
+        <img src="{% static 'img/my.svg' %}" alt="">
+        <p>마이</p>
+      </div>
+    </footer>
+  </div>
+
+
+  <script>
+    const interestDataEl = document.getElementById("interest-data");
+    const interests = interestDataEl.dataset.interests.split(',');
+
+    const userData = {
+      userID: "{{ request.user.username|default:'guest' }}",
+      interests: interests
+    };
+
+    const GO_ICON_URL = "{% static 'img/go.svg' %}";
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const cards = document.querySelectorAll('.job_card');
+
+      cards.forEach(card => {
+        // ⬇️ job_tags 채우기
+        const tagStr = card.dataset.tags || "";
+        const tags = tagStr.split(',').map(t => t.trim()).filter(t => t);
+        const tagContainer = card.querySelector('.job_tags');
+        tags.forEach(tag => {
+          const span = document.createElement('span');
+          span.className = 'tag_badge';
+          span.textContent = tag;
+          tagContainer.appendChild(span);
+        });
+
+        // ⬇️ badge_group 채우기
+        const catStr = card.dataset.categories || "";
+        const categories = catStr.split(',').map(c => c.trim()).filter(c => c);
+        const catContainer = card.querySelector('.badge_group');
+        categories.forEach(cat => {
+          const span = document.createElement('span');
+          span.className = 'stem_badge';
+          span.textContent = cat;
+          catContainer.appendChild(span);
+        });
+      });
+    });
+
+  </script>
+
 </body>
 
 </html>
