@@ -5,7 +5,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from jobs.models import UserLikedJob
-from jobs.models import Job, InterestTag
+from jobs.models import Job
+from match.models import UserSelectedTag
 from django.views.decorators.csrf import csrf_exempt
 import json
 
@@ -122,11 +123,16 @@ def find_user_id_view(request):
 
 @login_required
 def home_view(request):
-    interest_ids = request.session.get('interest_jobs', [])
-    interest_tags = InterestTag.objects.filter(
-        tag_id__in=interest_ids
-    ).values_list('name', flat=True).distinct()
+    # 사용자가 선택한 관심사
+    interest_tags = (
+    UserSelectedTag.objects.filter(user=request.user)
+    .select_related('tag')  # ForeignKey 최적화
+    .values_list('tag__tag_name', flat=True)
+    .distinct()
+)
 
+
+    # 최근 본 직무
     recent_ids = request.session.get('recent_jobs', [])
     recent_jobs = Job.objects.filter(job_id__in=recent_ids)[:3]
 
