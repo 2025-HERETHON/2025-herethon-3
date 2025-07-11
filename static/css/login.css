@@ -42,16 +42,12 @@ header {
   margin-left: 12px;
 }
 #Logo {
-  color: #000;
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 56px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.32px;
-  margin-top: 50px;
-  margin-bottom: 16px;
+  width: 129px;
+  height: 34px;
+  margin-bottom: 24px;
+}
+#InputContainer {
+  margin-top: 104px;
 }
 .InputBox {
   display: flex;
@@ -106,6 +102,8 @@ button {
   font-weight: 600;
   line-height: 24px; /* 133.333% */
   letter-spacing: -0.32px;
+
+  cursor: pointer;
 }
 #searchContainer {
   display: flex;
@@ -127,22 +125,21 @@ button {
 #Error {
   color: var(--Red-Primary, #ff5b4d);
   text-align: start;
-
-  /* Body/Body 4 */
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px; /* 128.571% */
+  line-height: 18px;
   letter-spacing: -0.045px;
+  height: 18px;
 
-  margin-top: 5px;
   position: absolute;
-  left: 20px;
-  top: 355px;
-  opacity: 0;
-  transition: opacity 0.1s ease;
+  top: 371px; /* 버튼 위에 띄우기 */
+  left: 16px;
+  width: 100%;
+  display: none;
 }
+
 #Error.show {
-  opacity: 1;
+  display: block;
 }
