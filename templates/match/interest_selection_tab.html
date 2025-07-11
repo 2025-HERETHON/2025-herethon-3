@@ -255,18 +255,22 @@
         </main>
 
         <footer>
-            <div class="home">
-                <img src="{% static 'img/home.svg' %}" alt="">
-                <p>홈</p>
-            </div>
+            <a href="{% url 'home' %}">
+                <div class="home">
+                    <img src="{% static 'img/home.svg' %}" alt="">
+                    <p>홈</p>
+                </div> 
+            </a>
             <div class="search">
                 <img src="{% static 'img/search.svg' %}" alt="">
                 <p>탐색</p>
             </div>
-            <div class="my">
-                <img src="{% static 'img/my.svg' %}" alt="">
-                <p>마이</p>
-            </div>
+            <a href="{% url 'mypage' %}">
+                <div class="my">
+                    <img src="{% static 'img/my.svg' %}" alt="">
+                    <p>마이</p>
+                </div>
+            </a>
         </footer>
     </div>
 

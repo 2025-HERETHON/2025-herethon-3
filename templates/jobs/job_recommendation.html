@@ -25,9 +25,11 @@
         </div>
 
         <header>
-            <div class="back">
-                <img src="{% static 'img/back.svg' %}" alt="">
-            </div>
+            <a href="{% url 'match:m_choose' %}">
+                <div class="back">
+                    <img src="{% static 'img/back.svg' %}" alt="">
+                </div>
+            </a>
             <div class="job_recommendation">
                 <h1>추천 직무</h1>
             </div>
