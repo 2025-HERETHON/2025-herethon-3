@@ -34,7 +34,7 @@ def choose_interest_view(request):
     tags = InterestTag.objects.all()
     print("✅ InterestTag 총 개수:", tags.count()) # 디버깅용 출력
     
-    return render(request, 'match/m_choose.html', {'tags': tags})
+    return render(request, 'match/interest_selection_intro.html', {'tags': tags})
 
 # http://127.0.0.1:8000/match/job/ 화면 view
 @login_required

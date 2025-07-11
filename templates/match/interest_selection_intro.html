@@ -33,7 +33,7 @@
                 <p>나의 관심사를 골라보세요.</p>
             </div>
 
-            <form method="POST" action="{% url 'interests' %}">
+            <form method="POST" action="{% url 'match:m_choose' %}">
                 {% csrf_token %}
                 <input type="hidden" name="interests" id="interestsInput">
 

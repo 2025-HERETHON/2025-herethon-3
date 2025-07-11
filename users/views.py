@@ -21,7 +21,7 @@ def signup_view(request):
         if form.is_valid():
             user = form.save()
             login(request, user)
-            return HttpResponse(f"회원가입 성공! 생성된 유저: {user.user_id}")
+            return render(request,'match/interest_selection_intro.html')
         else:
             print("❌ 폼 에러:", form.errors)
             return render(request, 'users/signup.html', {

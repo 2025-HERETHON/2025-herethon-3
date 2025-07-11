@@ -20,7 +20,7 @@
 
         <div id="HeadContainer">
             <div id="SignUpContainer">
-                <a href="{% url 'home' %}">
+                <a href="{% url 'onboarding' %}">
                     <img id="BackBtn" src="{% static 'img/backBtn.svg' %}" />
                 </a>
                 <div class="SignupText">
@@ -104,8 +104,9 @@
                     </div>
                 </div>
             </div>
-
-            <button type="submit" id="signupBtn" value="회원가입">가입하기</button>
+            <a href="{% url 'match:m_choose' %}">
+                <button type="submit" id="signupBtn" value="회원가입">가입하기</button>
+            </a>
         </form>
     </div>
 </body>
