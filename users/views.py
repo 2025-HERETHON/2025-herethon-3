@@ -11,6 +11,9 @@ import json
 
 # Create your views here.
 
+def onboarding_view(request):
+    return render(request, 'users/onboarding.html')
+
 def signup_view(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
@@ -100,8 +103,6 @@ def logout_view(request):
     logout(request)
     return redirect('onboarding')
 
-def onboarding_view(request):
-    return render(request, 'users/onboarding.html')
 
 # 아이디 찾기
 def find_user_id_view(request):

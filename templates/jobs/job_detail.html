@@ -93,6 +93,7 @@
 
 
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -114,7 +115,7 @@
         <div id="HeadContainer">
             <div id="recommendContainer">
                 <a href="">
-                    <img id="ArrowBtn" src="{% static 'img/allow-left.svg' %}" />
+                    <img id="ArrowBtn" src="{% static 'img/arrow-left.svg' %}" />
                 </a>
                 <div class="recommendText">
                     <p>추천 직무 설명</p>
@@ -137,7 +138,7 @@
                 <div class="board">
                     <div class="title">필요한 역량</div>
                     <div class="scroll_container1" id="scrollBox1">
-                        {% for skill in job.Soft_Skills %}
+                        {% for skill in job.Soft_Skills|split_by_splash %}
                             <div class="badge1"><p>{{ skill }}</p></div>
                         {% endfor %}
                     </div>
@@ -147,7 +148,7 @@
                 <div class="board">
                     <div class="title">관련 전공 학과</div>
                     <div class="scroll_container2" id="scrollBox2">
-                        {% for majors in  job.related_majors %}
+                        {% for majors in  job.related_majors|split_by_comma %}
                             <div class="badge2"><p>{{ majors }}</p></div>
                         {% endfor %}
                     </div>

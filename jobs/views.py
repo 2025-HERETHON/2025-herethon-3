@@ -12,6 +12,10 @@ def job_detail(request, job_id):
     job = get_object_or_404(Job, job_id=job_id)
     job.last_viewed_at = timezone.now()
     job.save()
+
+    # entry_path 분리
+    entry_path_list = [s.strip() for s in job.entry_path.split(',')]
+
     # 최근 본 직무 저장 (세션에 job_id만 저장)
     recent_jobs = request.session.get('recent_jobs', [])
 
@@ -24,7 +28,7 @@ def job_detail(request, job_id):
     request.session['recent_jobs'] = recent_jobs[:3]
     print("✅ 현재 세션 viewed_jobs:", recent_jobs)  # 디버깅용
     
-    return render(request, 'jobs/job_detail.html', {'job': job})
+    return render(request, 'jobs/job_detail.html', {'job': job, 'entry_path_list':entry_path_list})
     
 
 # 상세 직무 하트 눌러서 저장하기
