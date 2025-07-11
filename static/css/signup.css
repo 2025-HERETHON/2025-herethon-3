@@ -6,7 +6,10 @@
   border: none;
   box-sizing: border-box;
 }
-
+body {
+    display: block;
+    margin: 8px;
+}
 
 #Container {
   width: 375px;
@@ -177,7 +180,7 @@ form{
   letter-spacing: -0.32px;
 }
 .HelperText1, .HelperText2, .HelperText3{
-  height: 40px;
+  height: 20px;
   display: flex;
   gap: 10px;
 }
@@ -335,7 +338,7 @@ button {
   width: 100%;
   background: var(--Navy-NavyToneup, #2b66d0);
   color: var(--Navy-Navy01, #eaf2fd);
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 
