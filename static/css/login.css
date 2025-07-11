@@ -131,10 +131,12 @@ button {
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.045px;
+  height: 18px;
 
-  margin-top: -12px;
-  margin-bottom: 16px;
-
+  position: absolute;
+  top: 371px; /* 버튼 위에 띄우기 */
+  left: 16px;
+  width: 100%;
   display: none;
 }
 
