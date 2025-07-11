@@ -74,7 +74,8 @@ def login_view(request):
             login(request, user)  # 로그인 성공
             return JsonResponse({'success': True})  # 성공한 경우 JSON 응답
         else:
-            return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=400)
+            #return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=400)
+            return JsonResponse({'success': False, 'error': 'Invalid credentials'}, status=200)
 
     return JsonResponse({'error': 'Invalid request'}, status=400)
 
