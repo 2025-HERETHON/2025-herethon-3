@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="../css/login.css" />
+  </head>
+  <body>
+    <div id="Container">
+      <header>
+        <div id="TimeContainer">
+          <img id="Time" src="../images/Time.svg" />
+        </div>
+        <img id="Levels" src="../images/Levels.svg" />
+      </header>
+      <div id="BackBtnContainer" onclick="location.href='onBoarding.html'">
+        <img id="BackBtn" src="../images/backBtn.svg" />
+      </div>
+      <img id="logo" src="../img/logo.png" />
+      <div id="InputBox"><input id="ID" placeholder="아이디 입력" /></div>
+      <div id="InputBox"><input id="PW" placeholder="비밀번호 입력" /></div>
+      <div id="Error">아이디 또는 비밀번호를 다시 확인해주세요.</div>
+      <button id="loginBtn">로그인</button>
+      <div id="searchContainer">아이디 찾기 l 비밀번호 찾기</div>
+      <script type="text/javascript" href="../js/login.js"></script>
+    </div>
+  </body>
+</html>
