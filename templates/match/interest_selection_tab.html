@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관심사 선택 페이지 - 탐색 서치</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #f8f8f8;
+        }
+
+        #Container {
+            width: 375px;
+            height: 812px;
+            background: #fff;
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            /* 중앙 정렬 */
+            margin: 0 auto;
+            border: 1px solid var(--Gray-Primary, #d9d9d9);
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        header {
+            width: 100%;
+            height: 54px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        header .time {
+            margin-left: 48.55px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: -0.3px;
+            line-height: 1;
+        }
+
+        main {
+            font-family: 'Pretendard', sans-serif;
+            flex: 1;
+            overflow-y: auto;
+            width: 100%;
+        }
+
+        .logo {
+            /*
+    width: 157px;
+    height: 32px;
+    */
+            font-weight: 700;
+            font-size: 28px;
+            line-height: 32px;
+            letter-spacing: -0.32px;
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .title {
+            padding-left: 23px;
+            margin-top: 24px;
+        }
+
+        .title h1 {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 24px;
+            letter-spacing: -0.32px;
+            color: #3F3F3F;
+            text-align: left;
+            margin: 0 0 4px 0;
+        }
+
+        .title p {
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 24px;
+            letter-spacing: -0.32px;
+            color: #3F3F3F;
+            text-align: left;
+            margin: 0;
+            margin-bottom: 36px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 17px;
+            row-gap: 25px;
+            padding: 0 29px 0 31px;
+            margin-top: 36px;
+            justify-content: flex-start;
+            margin-bottom: 30.17px;
+            transition: all 0.3s ease;
+        }
+
+        .tag {
+            font-size: 13px;
+            font-weight: 400;
+            color: #3F3F3F;
+            background-color: #D9D9D9;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+            white-space: nowrap;
+            flex-shrink: 0;
+            position: relative;
+        }
+
+        .submit_btn {
+            display: flex;
+            justify-content: center;
+        }
+
+        .submit_btn button {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 18px;
+            border: none;
+            border-radius: 20px;
+            background-color: #D9D9D9;
+            margin-top: 35px;
+            cursor: pointer;
+        }
+
+        .tag.selected {
+            background-color: #595959;
+            color: white;
+            padding-left: 32px;
+            position: relative;
+        }
+
+        .tag.selected::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 16px;
+            height: 16px;
+            background-image: url('../img/check.svg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        footer {
+            width: 321px;
+            height: 56px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 10;
+            padding: 12px 30px 0 30px;
+            box-sizing: border-box;
+            margin-bottom: 16px;
+        }
+
+        footer div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        footer div img {
+            width: 24px;
+            height: 24px;
+            display: block;
+        }
+
+        footer div p {
+            font-family: 'Pretendard', sans-serif;
+            font-size: 12px;
+            line-height: 18px;
+            letter-spacing: -0.32px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        .home p,
+        .my p {
+            color: #979797;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="Container">
+        <header>
+            <div class="time">9:41</div>
+            <div class="icons">
+                <img src="{% static 'img/Levels.svg' %}" alt="">
+            </div>
+        </header>
+
+        <main>
+            <div class="logo">
+                <img src="{% static 'img/logo.png' %}" alt="">
+            </div>
+            <div class="title">
+                <h1>새로운 가능성을 발견해보세요</h1>
+                <p>관심사를 바꿔보면, 추천도 달라져요.</p>
+            </div>
+
+            <form method="POST" action="{% url 'match:m_job_select' %}">
+                {% csrf_token %}
+                <input type="hidden" name="interests" id="interestsInput">
+
+                <div class="tags">
+                    <button type="button" class="tag">환경/지속가능성</button>
+                    <button type="button" class="tag">대중문화/엔터</button>
+                    <button type="button" class="tag">뷰티/패션</button>
+                    <button type="button" class="tag">커뮤니티/소셜네트워킹</button>
+                    <button type="button" class="tag">커리어/교육</button>
+                    <button type="button" class="tag">여행/로컬문화</button>
+                    <button type="button" class="tag">사회문제 해결</button>
+                    <button type="button" class="tag">디자인/미적경험</button>
+                    <button type="button" class="tag">금융/자산관리</button>
+                    <button type="button" class="tag">동물/자연</button>
+                    <button type="button" class="tag">건강/웰니스</button>
+                    <button type="button" class="tag">AI/생성기술</button>
+                    <button type="button" class="tag">정치/사회참여</button>
+                    <button type="button" class="tag">소비 트렌드</button>
+                    <button type="button" class="tag">창작/창의활동</button>
+                </div>
+
+                <div class="submit_btn">
+                    <button type="submit" id="submit_btn">관심사 선택 후 추천 받기</button>
+                </div>
+        </main>
+
+        <footer>
+            <div class="home">
+                <img src="{% static 'img/home.svg' %}" alt="">
+                <p>홈</p>
+            </div>
+            <div class="search">
+                <img src="{% static 'img/search.svg' %}" alt="">
+                <p>탐색</p>
+            </div>
+            <div class="my">
+                <img src="{% static 'img/my.svg' %}" alt="">
+                <p>마이</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{% static 'js/interest_selection.js' %}"></script>
+</body>
+
+</html>

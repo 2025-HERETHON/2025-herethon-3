@@ -145,3 +145,16 @@ def mypage_view(request):
         'username': request.user.username,
     })
 
+from django.utils.safestring import mark_safe
+import json
+
+@csrf_exempt
+def job_select_view(request):
+    if request.method == "POST":
+        interests_str = request.POST.get("interests", "")
+        interests_list = interests_str.split(",") if interests_str else []
+
+        return render(request, 'match/job_recommendation.html', {
+            "interests_json": mark_safe(json.dumps(interests_list))
+        })
+    return redirect("home")
