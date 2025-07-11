@@ -11,12 +11,28 @@ document.addEventListener("DOMContentLoaded", function () {
     const user_id = ID.value;
     const password = PW.value;
 
+    ErrorMsg.classList.remove("show");
+    for (let box of InputBoxes) {
+      box.classList.remove("show");
+    }
+
+    // 유효성 검사 (입력값 없으면 표시만 하고 서버로 안 보냄)
+    if (!user_id || !password) {
+      ErrorMsg.textContent = "아이디와 비밀번호를 모두 입력해주세요.";
+      ErrorMsg.classList.add("show");
+      for (let box of InputBoxes) {
+        box.classList.add("show");
+      }
+      return;
+    }
+
     // 로그인 정보를 서버로 전송
-    const response = await fetch('/login/', {
-      method: 'POST',
+    const response = await fetch("/login/", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/json',
-        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value, // CSRF 토큰 추가
+        "Content-Type": "application/json",
+        "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]")
+          .value, // CSRF 토큰 추가
       },
       body: JSON.stringify({ user_id: user_id, password: password }),
     });
@@ -25,13 +41,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (response.ok && result.success) {
       // 로그인 성공 시 홈 화면으로 리디렉션
-      window.location.href = '/home/';// 홈 화면으로 리디렉션 (혹은 리디렉션 URL을 변경)
+      window.location.href = "/home/"; // 홈 화면으로 리디렉션 (혹은 리디렉션 URL을 변경)
     } else {
-      ErrorMsg.textContent = result.error || "아이디 또는 비밀번호를 다시 확인해주세요.";
+      ErrorMsg.textContent =
+        result.error || "아이디 또는 비밀번호를 다시 확인해주세요.";
       ErrorMsg.classList.add("show"); // 로그인 실패 시 에러 메시지 보이기
       for (let box of InputBoxes) {
         box.classList.add("show");
-        }
+      }
     }
   });
 });
