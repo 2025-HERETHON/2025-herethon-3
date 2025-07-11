@@ -115,13 +115,14 @@ header {
   margin-top: 15px;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  overflow-x: auto;
   justify-content: flex-start;  /* <-- ✅ 왼쪽 정렬 유지 */
   gap: 10px;
   width: 100%;                  /* ✅ 가로 공간 꽉 차게 */
   padding: 0 16px;              /* ✅ 좌우 여백 맞추기 */
   box-sizing: border-box;       /* ✅ padding 포함 */
 }
+
 
 /* 카드 박스 */
 .Box {
@@ -240,7 +241,7 @@ header {
   justify-content: flex-end;
 }
 #recentRolemodel {
-  margin-top: 35px;
+  margin-top: 25px;
   width: 100%; /* 338px → 전체 기준으로 */
   color: var(--Gray-Gray10, #3f3f3f);
   font-family: Pretendard;

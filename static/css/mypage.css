@@ -134,15 +134,21 @@ header {
   line-height: 24px; /* 133.333% */
   letter-spacing: -0.058px;
 }
+#scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
 /* 직무 섹션 */
 #BoxContainer {
   margin-top: 15px;
-
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* 2개씩 */
   flex-direction: row;
   flex-wrap: wrap;           /* ✅ 줄바꿈 허용 */
   gap: 10px;
-  justify-content: flex-start;/* ✅ 왼쪽 정렬 */
+  justify-content: center;/* ✅ 왼쪽 정렬 */
   max-width: 100%;           /* ✅ 부모 영역 넘지 않도록 */
 }
 
@@ -279,8 +285,8 @@ header {
   line-height: 24px; /* 133.333% */
   letter-spacing: -0.32px;
 
-  margin-top: 208.5px;
-  margin-bottom: 34px;
+  
+  margin-bottom: 70px;
 }
 footer {
   width: 321px;

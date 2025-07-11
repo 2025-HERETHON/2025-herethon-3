@@ -18,13 +18,14 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.style.marginTop = "152px";
   } else {
     // 직무 카드가 있을 때
-    boxContainer.style.display = "flex";
+    
     recentJob.style.display = "block";
     emptyJobSection.style.display = "none";
 
     // 원래대로 위치
-    logoutBtn.style.marginTop = "208.5px";
+    
   }
+  
 
   // 로그아웃 모달 관련
   const logoutBox = document.getElementById("logoutBox");

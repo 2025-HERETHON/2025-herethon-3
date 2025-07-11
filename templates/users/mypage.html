@@ -30,57 +30,56 @@
       </div>
 
       <div id="recentJob">찜해둔 관심 직무</div>
-<div id="BoxContainer">
-  {% for like in liked_jobs %}
-    <a href="{% url 'jobs:job_detail' like.job.job_id %}" class="Job-card-link" style="text-decoration: none; color: inherit;">
-      <div class="Box">
-        <div class="JobName">{{ like.job.job_name}}</div>
-        <div class="InterestContainer">
-          {% for tag in like.job.keyword_tags|split_by_space %}
-            <div class="Interest">{{ tag }}</div>
+      <div id="scrollArea">
+        <div id="BoxContainer">
+          {% for like in liked_jobs %}
+          <a href="{% url 'jobs:job_detail' like.job.job_id %}" class="Job-card-link" style="text-decoration: none; color: inherit;">
+            <div class="Box">
+              <div class="JobName">{{ like.job.job_name}}</div>
+              <div class="InterestContainer">
+                {% for tag in like.job.keyword_tags|split_by_space %}
+                <div class="Interest">{{ tag }}</div>
+                {% empty %}
+                <div class="Interest">#기타</div>
+                {% endfor %}
+              </div>
+              <div class="JobDetail">{{ like.job.job_description }}</div>
+              <div class="StemContainer">
+                {% for stem in like.job.stem_category|split_plus %}
+                <div class="Stem stem-{{ stem|lower }}">{{ stem }}</div>
+                {% endfor %}
+              </div>
+              <div class="heart">
+                <img src="{% static 'img/heart_filled.svg' %}" />
+              </div>
+            </div>
+          </a>
           {% empty %}
-            <div class="Interest">#기타</div>
+          <p>저장한 직무가 없습니다.</p>
           {% endfor %}
-        </div>
-        <div class="JobDetail">{{ like.job.job_description }}</div>
-        <div class="StemContainer">
-          {% for stem in like.job.stem_category|split_plus %}
-            <div class="Stem stem-{{ stem|lower }}">{{ stem }}</div>
-          {% endfor %}
-        </div>
-        <div class="heart">
-          <img src="{% static 'img/heart_filled.svg' %}" />
         </div>
       </div>
-    </a>
-  {% empty %}
-    <p>저장한 직무가 없습니다.</p>
-  {% endfor %}
-</div>
-
-
       <button id="logout">LOGOUT</button>
 
      <footer>
-  <div class="nav-item">
-    <a href="{% url 'home' %}">
-      <img src="{% static 'img/NavHome.svg' %}" alt="home" />
-      <p>홈</p>
-    </a>
-  </div>
-  <div class="nav-item">
-    <a href="{% url 'match:m_job_select' %}">
-      <img src="{% static 'img/NavSearch.svg' %}" alt="search" />
-      <p>탐색</p>
-    </a>
-  </div>
-  <div class="nav-item">
-    
-      <img src="{% static 'img/NavMy.svg' %}" alt="my" />
-      <p>마이</p>
-    </a>
-  </div>
-</footer>
+      <div class="nav-item">
+        <a href="{% url 'home' %}">
+          <img src="{% static 'img/NavHome.svg' %}" alt="home" />
+          <p>홈</p>
+        </a>
+      </div>
+      <div class="nav-item">
+        <a href="{% url 'match:m_job_select' %}">
+        <img src="{% static 'img/NavSearch.svg' %}" alt="search" />
+        <p>탐색</p>
+        </a>
+      </div>
+      <div class="nav-item">
+        <img src="{% static 'img/NavMy.svg' %}" alt="my" />
+        <p>마이</p>
+      </a>
+    </div>
+  </footer>
 
 
 

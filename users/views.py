@@ -128,7 +128,7 @@ def home_view(request):
     ).values_list('name', flat=True).distinct()
 
     recent_ids = request.session.get('recent_jobs', [])
-    recent_jobs = Job.objects.filter(job_id__in=recent_ids)[:2]
+    recent_jobs = Job.objects.filter(job_id__in=recent_ids)[:3]
 
     return render(request, 'users/home.html', {
         'username': request.user.username,
@@ -138,7 +138,7 @@ def home_view(request):
 
 
 def mypage_view(request):
-    liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:2]  # 최대 3개
+    liked_jobs = UserLikedJob.objects.filter(user=request.user).select_related('job')[:4]  # 최대 3개
     
     return render(request, 'users/mypage.html', {
         'liked_jobs': liked_jobs,       
