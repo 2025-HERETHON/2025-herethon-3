@@ -18,11 +18,18 @@
         <img id="BackBtn" src="../images/backBtn.svg" />
       </div>
       <img id="logo" src="../img/logo.png" />
-      <div id="InputBox"><input id="ID" placeholder="아이디 입력" /></div>
-      <div id="InputBox"><input id="PW" placeholder="비밀번호 입력" /></div>
+      <div id="InputContainer">
+        <div class="InputBox"><input id="ID" placeholder="아이디 입력" /></div>
+        <div class="InputBox">
+          <input id="PW" placeholder="비밀번호 입력" />
+        </div>
+      </div>
+
       <div id="Error">아이디 또는 비밀번호를 다시 확인해주세요.</div>
       <button id="loginBtn">로그인</button>
-      <div id="searchContainer">아이디 찾기 l 비밀번호 찾기</div>
+      <div id="searchContainer">
+        아이디 찾기 <img src="../img/bar.svg" alt="bar.svg" /> 비밀번호 찾기
+      </div>
       <script type="text/javascript" href="../js/login.js"></script>
     </div>
   </body>

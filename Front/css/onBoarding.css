@@ -24,7 +24,10 @@ header {
   flex: 1 0 0;
 }
 #logo {
-  margin-top: 220px;
+  width: 125px;
+  height: 34px;
+
+  margin-top: 226px;
   color: #000;
   text-align: center;
 
@@ -37,7 +40,7 @@ header {
   letter-spacing: -0.09px;
 }
 #text {
-  margin-top: 38px;
+  margin-top: 73px;
   color: var(--Gray-Gray10, #3f3f3f);
 
   /* Title/Title 1 */

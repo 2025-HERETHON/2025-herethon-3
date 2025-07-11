@@ -40,18 +40,13 @@ header {
   margin-left: 12px;
 }
 #Logo {
-  color: #000;
-  text-align: center;
-  font-family: Pretendard;
-  font-size: 56px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  letter-spacing: -0.32px;
-  margin-top: 50px;
-  margin-bottom: 16px;
+  margin-top: 10px;
+  margin-bottom: 104px;
 }
-#InputBox {
+#InputContainer {
+  margin-top: 104px;
+}
+.InputBox {
   display: flex;
   width: 343px;
   height: 55px;
