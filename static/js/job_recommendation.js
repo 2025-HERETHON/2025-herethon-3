@@ -1,3 +1,5 @@
+document.addEventListener("DOMContentLoaded", function () {
+
 const jobs = [
   {
     title: "환경 데이터 분석가",
@@ -138,3 +140,5 @@ cardContainer.addEventListener('scroll', () => {
 });
 
 window.addEventListener('load', updateActiveCard); // 처음 진입 시에도 적용
+
+});

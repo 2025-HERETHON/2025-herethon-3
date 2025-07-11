@@ -3,7 +3,6 @@
 
 <head>
     {% load static %}
-    {% load json_script %}
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -42,11 +41,9 @@
             <div class="tags"></div>
 
             <div class="card_container"></div>
-
         </main>
 
-        {{ interests|json_script:"interests-data" }}
-
+        <div id="interest-data" data-interests="{{ interests|join:',' }}"></div>
         <footer>
             <div class="home">
                 <img src="{% static 'img/home.svg' %}" alt="">
@@ -65,12 +62,16 @@
     </div>
 
     <script>
-        const GO_ICON_URL = "{% static 'img/go.svg' %}";
+        const interestDataEl = document.getElementById("interest-data");
+        const interests = interestDataEl.dataset.interests.split(',');
 
         const userData = {
             userID: "{{ request.user.username|default:'guest' }}",
-            interests: JSON.parse(document.getElementById("interests-data").textContent)
+            interests: interests
         };
+
+        const GO_ICON_URL = "{% static 'img/go.svg' %}";
+
     </script>
 
     <script src="{% static 'js/job_recommendation.js' %}"></script>
