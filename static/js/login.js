@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (response.ok && result.success) {
       // 로그인 성공 시 홈 화면으로 리디렉션
-      window.location.href = '/';  // 홈 화면으로 리디렉션 (혹은 리디렉션 URL을 변경)
+      window.location.href = 'home/';  // 홈 화면으로 리디렉션 (혹은 리디렉션 URL을 변경)
     } else {
       ErrorMsg.textContent = result.error || "아이디 또는 비밀번호를 다시 확인해주세요.";
       ErrorMsg.classList.add("show"); // 로그인 실패 시 에러 메시지 보이기
