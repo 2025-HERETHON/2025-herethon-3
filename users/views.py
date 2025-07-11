@@ -5,14 +5,12 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
 from jobs.models import UserLikedJob
-from jobs.models import Job, InterestTag
+from jobs.models import Job
+from match.models import UserSelectedTag
 from django.views.decorators.csrf import csrf_exempt
 import json
 
 # Create your views here.
-
-def onboarding_view(request):
-    return render(request, 'users/onboarding.html')
 
 def signup_view(request):
     if request.method == 'POST':
@@ -103,6 +101,8 @@ def logout_view(request):
     logout(request)
     return redirect('onboarding')
 
+def onboarding_view(request):
+    return render(request, 'users/onboarding.html')
 
 # 아이디 찾기
 def find_user_id_view(request):
@@ -123,11 +123,16 @@ def find_user_id_view(request):
 
 @login_required
 def home_view(request):
-    interest_ids = request.session.get('interest_jobs', [])
-    interest_tags = InterestTag.objects.filter(
-        tag_id__in=interest_ids
-    ).values_list('name', flat=True).distinct()
+    # 사용자가 선택한 관심사
+    interest_tags = (
+    UserSelectedTag.objects.filter(user=request.user)
+    .select_related('tag')  # ForeignKey 최적화
+    .values_list('tag__tag_name', flat=True)
+    .distinct()
+)
 
+
+    # 최근 본 직무
     recent_ids = request.session.get('recent_jobs', [])
     recent_jobs = Job.objects.filter(job_id__in=recent_ids)[:3]
 
@@ -146,16 +151,3 @@ def mypage_view(request):
         'username': request.user.username,
     })
 
-from django.utils.safestring import mark_safe
-import json
-
-@csrf_exempt
-def job_select_view(request):
-    if request.method == "POST":
-        interests_str = request.POST.get("interests", "")
-        interests_list = interests_str.split(",") if interests_str else []
-
-        return render(request, 'match/job_recommendation.html', {
-            "interests_json": mark_safe(json.dumps(interests_list))
-        })
-    return redirect("home")
