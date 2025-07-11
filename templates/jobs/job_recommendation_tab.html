@@ -6,9 +6,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>직무 추천 리스트</title>
-    <link rel="stylesheet" href="{% static 'css/job_recommendation.css' %}">
+    <title>직무 추천 리스트 - 탐색 서치</title>
+    <link rel="stylesheet" href="{% static 'css/job_recommendation_tab.css' %}">
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/variable/pretendardvariable.css" />
 
@@ -25,11 +24,9 @@
         </div>
 
         <header>
-
-            <a href="javascript:history.back()" class="back">
-                <img src="{% static 'img/back.svg' %}" alt="뒤로가기">
-            </a>
-
+            <div class="back">
+                <img src="{% static 'img/back.svg' %}" alt="">
+            </div>
             <div class="job_recommendation">
                 <h1>추천 직무</h1>
             </div>
@@ -44,13 +41,7 @@
             <div class="tags"></div>
 
             <div class="card_container"></div>
-
-
         </main>
-
-        {{ interests|json_script:"interests-data" }}
-
-<!--      충돌 없애려 주석처리함. 위에가 새로 푸쉬한 코드   </main>
 
         <div id="interest-data" data-interests="{{ interests|join:',' }}"></div>
         <footer>
@@ -66,28 +57,20 @@
                 <img src="{% static 'img/my.svg' %}" alt="">
                 <p>마이</p>
             </div>
-        </footer> -->
-
+        </footer>
 
     </div>
 
     <script>
-
-        const GO_ICON_URL = "{% static 'img/go.svg' %}";
+        const interestDataEl = document.getElementById("interest-data");
+        const interests = interestDataEl.dataset.interests.split(',');
 
         const userData = {
             userID: "{{ request.user.username|default:'guest' }}",
-            interests: JSON.parse(document.getElementById("interests-data").textContent)
+            interests: interests
         };
 
-  // 충돌없애려 지우는 코드
-//         const interestDataEl = document.getElementById("interest-data");
-//         const interests = interestDataEl.dataset.interests.split(',');
-
-//         const userData = {
-//             userID: "{{ request.user.username|default:'guest' }}",
-//             interests: interests
-//         };
+        const GO_ICON_URL = "{% static 'img/go.svg' %}";
 
     </script>
 

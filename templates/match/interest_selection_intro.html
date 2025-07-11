@@ -19,9 +19,7 @@
     <div id="Container">
         <header>
             <div class="time">9:41</div>
-
-            <div class="icons">x
-
+            <div class="icons">
                 <img src="{% static 'img/Levels.svg' %}" alt="">
             </div>
         </header>
@@ -34,9 +32,6 @@
                 <h1>어떤 주제에 관심이 있나요?</h1>
                 <p>나의 관심사를 골라보세요.</p>
             </div>
-
-
-<!--             <form action="{% url 'match:interests' %}"> -->
 
             <form method="POST" action="{% url 'interests' %}">
                 {% csrf_token %}
