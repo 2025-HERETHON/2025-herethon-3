@@ -78,3 +78,6 @@ def job_select_view(request):
 #    job = get_object_or_404(Job, job_id=job_id)
 #    return render(request, 'match/m_job_detail.html', {'job': job})
 
+@login_required
+def interest_selection_view(request):
+    return render(request, 'match/interest_selection_tab.html')
