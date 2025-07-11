@@ -1,3 +1,6 @@
+* {
+  text-decoration: none;
+}
 body {
   margin: 0;
   padding: 0;
@@ -181,8 +184,10 @@ footer div p {
   line-height: 18px;
   letter-spacing: -0.32px;
   font-weight: 500;
+  text-decoration: none;
   margin: 0;
 }
+
 
 .home p,
 .my p {
