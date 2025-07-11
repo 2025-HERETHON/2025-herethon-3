@@ -1,22 +1,50 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <title>로그인</title>
-</head>
-<body>
-    <h2>로그인</h2>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
+  <body>
+    <div id="Container">
+      <header>
+        <div id="TimeContainer">
+          <img id="Time" src="{% static 'img/Time.svg' %}" />
+        </div>
+        <img id="Levels" src="{% static 'img/Levels.svg' %}" />
+      </header>
+      <a href="{% url 'onboarding' %}" id="BackBtnContainer">
+  <img id="BackBtn" src="{% static 'img/backBtn.svg' %}" />
+</a>
 
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
+      <div id="Logo">로고</div>
 
-    <form method="post">
+      <!-- 로그인 폼 -->
+      <form method="POST" action="{% url 'login' %}">
         {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">로그인</button>
-    </form>
+        
+        <!-- 아이디 입력 필드 -->
+        <div class="InputBox">
+          <input id="ID" name="user_id" placeholder="아이디 입력" required />
+        </div>
 
-    <p>계정이 없으신가요? <a href="{% url 'users:signup' %}">회원가입</a></p>
-</body>
+        <!-- 비밀번호 입력 필드 -->
+        <div class="InputBox">
+          <input id="PW" name="password" type="password" placeholder="비밀번호 입력" required />
+        </div>
+
+        <!-- 에러 메시지 (초기에는 숨김) -->
+        <div id="Error" style="display: none;">아이디 또는 비밀번호를 다시 확인해주세요.</div>
+
+        <!-- 로그인 버튼 -->
+        <button id="loginBtn" type="submit">로그인</button>
+      </form>
+
+      <div id="searchContainer">아이디 찾기 l 비밀번호 찾기</div>
+    </div>
+
+    <script type="text/javascript" src="{% static 'js/login.js' %}"></script>
+  </body>
 </html>

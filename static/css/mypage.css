@@ -1,0 +1,440 @@
+#Container {
+  margin: 0 auto;
+  width: 375px;
+  height: 812px;
+  background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  border: 1px solid var(--Gray-Primary, #d9d9d9);
+}
+
+header {
+  width: 100%;
+  padding: 9px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 106.87px;
+}
+#TimeContainer {
+  display: flex;
+  padding: 18.34px 0px 13.66px 0px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+}
+
+#welcome {
+  margin-top: 24px;
+  margin-left: 21px;
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Heading/Heading 2 */
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 114.286% */
+  letter-spacing: -0.09px;
+}
+/* 빈 직무 안내 영역 */
+#emptyJobSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+#heartArrow {
+  margin-top: 227px;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  aspect-ratio: 1/1;
+}
+#job0 {
+  margin-top: 35px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+  text-align: center;
+
+  /* Body/Body 1 */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.051px;
+}
+#recommand {
+  margin-top: 11px;
+
+  color: var(--Gray-Gray09, #595959);
+
+  /* Body/Body 4 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+}
+
+#recentText {
+  margin-top: 15px;
+  margin-left: 21px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Title/Title 1 */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 120% */
+  letter-spacing: -0.064px;
+}
+#recentInterestText {
+  margin-top: 35px;
+  margin-left: 21px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.058px;
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+
+#recentJob {
+  margin-top: 28px;
+  margin-left: 21px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.058px;
+}
+#scrollArea {
+  flex: 1;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* 직무 섹션 */
+#BoxContainer {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);  /* 2개씩 */
+  flex-direction: row;
+  flex-wrap: wrap;           /* ✅ 줄바꿈 허용 */
+  gap: 10px;
+  justify-content: center;/* ✅ 왼쪽 정렬 */
+  max-width: 100%;           /* ✅ 부모 영역 넘지 않도록 */
+}
+
+/* 카드 박스 */
+.Box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  width: 100%;
+  max-width: 160px;          /* ✅ 최대 너비 제한 */
+  aspect-ratio: 2 / 3;       /* 비율 유지 */
+  padding: 20px 12px 16px 12px;
+
+  box-sizing: border-box;    /* ✅ 패딩 포함 크기 계산 */
+  border-radius: 16px;
+  background: var(--Blue-Blue01, #f1f9ff);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0);
+}
+
+.JobName {
+  margin-bottom: 15px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Body/Body 3 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+}
+.InterestContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  margin-top: 15px;
+}
+.Interest {
+  display: flex;
+  height: 15px;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 16px;
+  background: var(--Navy-Primary, #2450a8);
+  color: var(--Navy-Navy01, #eaf2fd);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 225% */
+  letter-spacing: -0.026px;
+}
+.JobDetail {
+  width: 136px;
+  margin-top: 24px;
+  margin-bottom: 37px;
+  color: var(--Gray-Gray08, #737373);
+
+  /* Caption/Caption 2 */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+  letter-spacing: -0.038px;
+}
+.StemContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  margin-bottom: 15px;
+}
+.Stem {
+  display: flex;
+  padding: 3px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--Blue-Blue01, #f1f9ff);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 180% */
+  letter-spacing: -0.032px;
+}
+.stem-science {
+  border-radius: 30px;
+  background: var(--Blue-Primary, #98d3fb);
+}
+.stem-tech {
+  border-radius: 30px;
+  background: var(--Purple-Primary, #a78bfa);
+}
+.stem-engineering {
+  border-radius: 30px;
+  background: var(--Mint-Primary, #FACC15);
+}
+.stem-math {
+  border-radius: 30px;
+  background: var(--Yellow-Primary, #2DD4BF);
+}
+.heart {
+  display: flex;
+  justify-content: flex-end;
+}
+#logout {
+  display: flex;
+  width: 343px;
+  height: 55px;
+  padding: 10px 24px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  border: 1px solid var(--Gray-Primary, #d9d9d9);
+  background-color: transparent;
+  color: var(--Gray-Gray10, #3f3f3f);
+  text-align: center;
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.32px;
+
+  
+  margin-bottom: 70px;
+}
+footer {
+  width: 321px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  padding: 12px 18px 0 18px;
+  box-sizing: border-box;
+
+  position: absolute;  /* ✅ 고정 높이 내에서 위치 제어 */
+  bottom: 15px;         /* ✅ 원하는 만큼 위로 올림 (예: 80px) */
+  left: 50%;            /* 가운데 정렬 */
+  transform: translateX(-50%);
+}
+
+
+footer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+footer div img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+footer div p {
+  font-family: "Pretendard", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.32px;
+  font-weight: 500;
+  margin: 0;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-item a p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.search p,
+.home p {
+  color: #979797;
+}
+#logoutBox {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, 20%);
+  z-index: 999;
+  width: 288px;
+  height: 202px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 10px;
+  border-radius: 12px;
+  background: white;
+}
+
+#warning {
+  width: 32px;
+  height: 32px;
+  aspect-ratio: 1/1;
+}
+#question {
+  margin-top: 8px;
+
+  color: var(--Gray-Gray10, #3f3f3f);
+  text-align: center;
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.32px;
+}
+#remainText {
+  margin-top: 16px;
+
+  color: var(--Gray-Gray09, #595959);
+  text-align: center;
+
+  /* Body/Body 3 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.32px;
+}
+#buttonContainer {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 12px;
+}
+.logoutBtn {
+  display: flex;
+  width: 122px;
+  height: 40px;
+  padding: 5px 20px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 8px;
+  border: none;
+  background: var(--Gray-Primary, #d9d9d9);
+
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+.logoutBtn.active {
+  background: var(--Navy-Navy03, #aacbf9);
+  color: var(--Navy-Primary, #2450a8);
+}
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* 🔥 어두운 배경 */
+  z-index: 998;
+}

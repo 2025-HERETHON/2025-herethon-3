@@ -1,0 +1,183 @@
+<!-- <!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>{{ job.job_name }}</title>
+  <meta name="csrf-token" content="{{ csrf_token }}">
+  <style>
+    .like-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 24px;
+      color: #aaa;
+    }
+
+    .like-btn.liked {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>{{ job.job_name }}</h1>
+  <p><strong>한줄 설명:</strong> {{ job.emotive_copy }}</p>
+  <p><strong>설명:</strong> {{ job.job_description }}</p>
+  <p><strong>필요한 역량:</strong> {{ job.Soft_Skills }}</p>
+  <p><strong>관련 전공:</strong> {{ job.related_majors }}</p>
+  <p><strong>진입 방법:</strong> {{ job.entry_path }}</p>
+  <p><strong>추천 이유:</strong> {{ job.recommend_reason }}</p>
+
+  <p><strong>관련 태그:</strong>
+    {% for tag in job.related_tags.all %}
+    <span>#{{ tag.name }}</span>
+    {% empty %}
+    <span>관련 태그 없음</span>
+    {% endfor %}
+  </p> -->
+
+  <!-- 저장하기 버튼 -->
+  <!-- <form id="like-form" data-url="{% url 'jobs:like_job' job.job_id %}">
+    <button type="submit" id="like-button">♡ 저장하기</button>
+  </form> -->
+
+  <!-- 롤모델 보러가기 버튼 -->
+  <!-- <a href="{% url 'role:job_roles' job.job_id %}">
+    롤모델 보러가기
+  </a>
+
+  <a href="{% url 'match:m_job_select' %}">← 목록으로</a> -->
+
+  <!-- JS 연결 -->
+  <!-- <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const form = document.getElementById("like-form");
+      const button = document.getElementById("like-button");
+
+      if (!form || !button) return;
+
+      const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute("content");
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        fetch(form.dataset.url, {
+          method: "POST",
+          headers: {
+            "X-CSRFToken": csrfToken,
+            "Content-Type": "application/json"
+          }
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data.status === "liked") {
+              button.textContent = "♥ 저장됨";
+              button.classList.add("liked");
+            } else if (data.status === "unliked") {
+              button.textContent = "♡ 저장하기";
+              button.classList.remove("liked");
+            }
+          })
+          .catch(error => {
+            console.error("에러 발생:", error);
+          });
+      });
+    }); -->
+  <!-- </script>
+
+</body>
+</html> -->
+
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>직무 상세 리스트</title>
+    <link rel="stylesheet" href="{% static 'css/job_detail.css' %}" />
+    <script src="{% static 'js/job_detail.js' %}" defer></script>
+</head>
+<body>
+    <div id="Container">
+        <header>
+            <div id="TimeContainer">
+                <img id="Time" src="{% static 'img/Time.svg' %}" />
+            </div>
+            <img id="Levels" src="{% static 'img/Levels.svg' %}" />
+        </header>
+
+        <div id="HeadContainer">
+            <div id="recommendContainer">
+                <a href="">
+                    <img id="ArrowBtn" src="{% static 'img/allow-left.svg' %}" />
+                </a>
+                <div class="recommendText">
+                    <p>추천 직무 설명</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="mainContainer">
+            <div class="info_container">
+                <div class="job_info1">
+                    <p><span class="highlight">{{ job.emotive_copy }}</span></p>
+                </div>
+                <div class="job_info2"><p>{{ job.recommend_reason }}</p></div>
+            </div>
+
+            <p class="job_info3">{{ job.job_name }}을 향한 여정</p>
+
+            <div class="detail_container">
+                <!-- 필요한 역량 -->
+                <div class="board">
+                    <div class="title">필요한 역량</div>
+                    <div class="scroll_container1" id="scrollBox1">
+                        {% for skill in job.Soft_Skills %}
+                            <div class="badge1"><p>{{ skill }}</p></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                
+                <!-- 관련 전공 학과 -->
+                <div class="board">
+                    <div class="title">관련 전공 학과</div>
+                    <div class="scroll_container2" id="scrollBox2">
+                        {% for majors in  job.related_majors %}
+                            <div class="badge2"><p>{{ majors }}</p></div>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- 진입 루트 -->
+                <div class="board3">
+                    <div class="title">진입 루트</div>
+                    <div class="list_container">
+                        {% for path in  job.entry_path %}
+                            <div class="list_box">
+                                <img class="groupBtn" src="{% static 'img/Group.svg' %}">
+                                <div class="list_content"><p>{{ path }}</p></div>
+                            </div>
+                        {% endfor %} 
+                    </div>
+                </div>
+
+                <div class="board4">
+                    <div id="rolemodelBtn"><a href="{% url 'role:job_roles' job.job_id %}">관련 롤모델 보기 ▸</a></div>
+                    <div id="mainBtn"><a href="">메인 홈 이동</a></div>
+                </div>
+            </div>
+        </div>
+
+        <form id="like-form" data-url="{% url 'jobs:like_job' job.job_id %}">
+            <Button type="submit" class="floating_button" id="like-button">
+                <img id="heartImg" src="{% static 'img/heart.svg' %}" alt="하트">
+            </Button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,360 @@
+#Container {
+  margin: 0 auto;
+  width: 375px;
+  height: 812px;
+  background: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 auto;
+  border: 1px solid var(--Gray-Primary, #d9d9d9);
+}
+
+
+header {
+  width: 100%;
+  padding: 9px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 106.87px;
+}
+#TimeContainer {
+  display: flex;
+  padding: 18.34px 0px 13.66px 0px;
+  justify-content: center;
+  align-items: center;
+  flex: 1 0 0;
+}
+
+#welcome {
+  margin-top: 24px;
+  margin-left: 21px;
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Heading/Heading 2 */
+  font-family: Pretendard;
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 32px; /* 114.286% */
+  letter-spacing: -0.09px;
+}
+#recentText {
+  margin-top: 15px;
+  margin-left: 21px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Title/Title 1 */
+  font-family: Pretendard;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 120% */
+  letter-spacing: -0.064px;
+}
+#recentInterestText {
+  margin-top: 35px;
+  margin-left: 21px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.058px;
+  display: block;
+  overflow: visible;
+  text-overflow: unset;
+  white-space: normal;
+}
+#recentInterest {
+  margin-top: 15px;
+  margin-left: 21px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  align-self: stretch;
+  color: var(--Gray-Gray08, #737373);
+  text-overflow: ellipsis;
+
+  /* Body/Body 3 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+}
+#recentJob {
+  margin-top: 28px;
+  margin-left: 21px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Title/Title 2 */
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 133.333% */
+  letter-spacing: -0.058px;
+}
+/* 직무 섹션 */
+#BoxContainer {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  justify-content: flex-start;  /* <-- ✅ 왼쪽 정렬 유지 */
+  gap: 10px;
+  width: 100%;                  /* ✅ 가로 공간 꽉 차게 */
+  padding: 0 16px;              /* ✅ 좌우 여백 맞추기 */
+  box-sizing: border-box;       /* ✅ padding 포함 */
+}
+
+
+/* 카드 박스 */
+.Box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  width: 100%;
+  max-width: 160px;          /* ✅ 최대 너비 제한 */
+  aspect-ratio: 2 / 3;       /* 비율 유지 */
+  padding: 20px 12px 16px 12px;
+
+  box-sizing: border-box;    /* ✅ 패딩 포함 크기 계산 */
+  border-radius: 16px;
+  background: var(--Blue-Blue01, #f1f9ff);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0);
+}
+
+.JobName {
+  margin-bottom: 15px;
+
+  align-self: stretch;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Body/Body 3 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+}
+.InterestContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  margin-top: 15px;
+}
+.Interest {
+  display: flex;
+  height: 15px;
+  padding: 4px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 16px;
+  background: var(--Navy-Primary, #2450a8);
+  color: var(--Navy-Navy01, #eaf2fd);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 8px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 225% */
+  letter-spacing: -0.026px;
+}
+.Job-card-link {
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit;         /* 글자 색 기존 그대로 유지 */
+  display: block;         /* div처럼 동작하게 */
+}
+.JobDetail {
+  width: 136px;
+  margin-top: 24px;
+  margin-bottom: 37px;
+  color: var(--Gray-Gray08, #737373);
+
+  /* Caption/Caption 2 */
+  font-family: Pretendard;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 150% */
+  letter-spacing: -0.038px;
+}
+.StemContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 7px;
+  margin-bottom: 15px;
+}
+.Stem {
+  display: flex;
+  padding: 3px 6px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  color: var(--Blue-Blue01, #f1f9ff);
+  text-align: center;
+  font-family: Pretendard;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 180% */
+  letter-spacing: -0.032px;
+}
+
+.stem-science {
+  border-radius: 30px;
+  background: var(--Blue-Primary, #98d3fb);
+}
+.stem-tech {
+  border-radius: 30px;
+  background: var(--Purple-Primary, #a78bfa);
+}
+.stem-engineering {
+  border-radius: 30px;
+  background: var(--Mint-Primary, #FACC15);
+}
+.stem-math {
+  border-radius: 30px;
+  background: var(--Yellow-Primary, #2DD4BF);
+}
+.heart {
+  display: flex;
+  justify-content: flex-end;
+}
+#recentRolemodel {
+  margin-top: 25px;
+  width: 100%; /* 338px → 전체 기준으로 */
+  color: var(--Gray-Gray10, #3f3f3f);
+  font-family: Pretendard;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -0.058px;
+  padding-left: 21px; /* 왼쪽 고정 정렬용 */
+  box-sizing: border-box;
+}
+
+#rolemodelBox {
+  margin-top: 15px;
+  margin-bottom: 48px;
+  padding: 10px 12px;
+  width: 338px; /* 제목과 너비 동일하게 맞춤 */
+  display: flex;
+  flex-direction: column;
+  background: var(--Gray-Gray02, #f2f2f2);
+  align-items: flex-start;
+  gap: 5px;
+  box-sizing: border-box;
+}
+#rolemodel {
+  flex: 1 0 0;
+  color: var(--Gray-Gray10, #3f3f3f);
+
+  /* Body/Body 3 */
+  font-family: Pretendard;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+}
+#replay {
+  display: flex;
+  align-items: center;
+  color: var(--Gray-Gray07, #8c8c8c);
+
+  /* Body/Body 3 */
+  font-family: Pretendard;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 18px; /* 128.571% */
+  letter-spacing: -0.045px;
+  margin-left: auto;
+}
+footer {
+  width: 321px;
+  height: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+  padding: 12px 18px 0 18px;
+  box-sizing: border-box;
+
+  /* ✅ 위치 제어 */
+  position: absolute;
+  bottom: 15px;             /* ✅ 바닥에서 20px 위 */
+  left: 50%;                
+  transform: translateX(-50%);
+}
+
+
+footer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+footer div img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+footer div p {
+  font-family: "Pretendard", sans-serif;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: -0.32px;
+  font-weight: 500;
+  margin: 0;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.nav-item a {
+  text-decoration: none;
+  color: #555;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.nav-item a p {
+  font-size: 12px;
+  margin: 0;
+}
+
+.search p,
+.my p {
+  color: #979797;
+}

@@ -16,8 +16,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path , include
+from django.conf import settings
+from django.conf.urls.static import static
+import os
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('users.urls', namespace='users')),
+    path('', include('users.urls')),
+    path('jobs/', include('jobs.urls', namespace='jobs')),
+    path('match/', include('match.urls', namespace='match')),
+    path('role/', include('role.urls', namespace='role')),
 ]
+
+if settings.DEBUG:
+    from pathlib import Path
+    print(f"[DEBUG] STATIC_URL = {settings.STATIC_URL}")  # 디버깅용
+    print(f"[DEBUG] STATICFILES_DIRS = {settings.STATICFILES_DIRS}")
+    urlpatterns += static(settings.STATIC_URL, document_root=os.path.join(settings.BASE_DIR, 'static'))

@@ -1,0 +1,24 @@
+<!-- 백엔드 테스트용  -->
+<!-- 실제 사용 안함 , jobs/job_datail로 렌더링 해야함  -->
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>job_detail</title>
+</head>
+
+<body>
+    <h2>{{ job.job_name }}</h2>
+    <p><strong>설명:</strong> {{ job.job_description }}</p>
+    <p><strong>관련 전공:</strong> {{ job.related_majors }}</p>
+    <p><strong>진입 경로:</strong> {{ job.entry_path }}</p>
+    <p><strong>키워드 태그:</strong> {{ job.keyword_tags }}</p>
+    <p><strong>추천 사유:</strong> {{ job.recommend_reason }}</p>
+    <p><strong>STEM 분류:</strong> {{ job.stem_category }}</p>
+
+</body>
+
+</html>
