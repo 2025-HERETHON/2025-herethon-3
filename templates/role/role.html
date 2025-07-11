@@ -1,40 +1,77 @@
+{%load static%}
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>롤모델 보기</title>
-    <style>
-        .role-card {
-            border: 1px solid #ccc;
-            padding: 1rem;
-            margin-bottom: 1rem;
-            border-radius: 8px;
-        }
-        blockquote {
-            margin-top: 0.5rem;
-            font-style: italic;
-            color: #555;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관련 롤모델</title>
+    <link rel="stylesheet" href="{% static 'css/role.css'%}" />
+    <!-- <script src="../js/m_job_detail.js" defer></script> -->
 </head>
 <body>
+    <div id="Container">
+        <header>
+            <div id="TimeContainer">
+                <img id="Time" src="{% static 'img/Time.svg'%}" />
+            </div>
+            <img id="Levels" src="{% static 'img/Levels.svg'%}" />
+        </header>
 
-    <h2>‘{{ job.job_name }}’ 관련 롤모델</h2>
-
-    {% if roles %}
-        <div class="role-list">
-            {% for role in roles %}
-                <div class="role-card">
-                    <h3>{{ role.role_name }}</h3>
-                    <p><strong>{{ role.role_title }}</strong></p>
-                    <p>{{ role.short_bio }}</p>
-                    <blockquote>“{{ role.quote }}”</blockquote>
-                    <p><a href="{{ role.original_url }}" target="_blank">원문 보기</a></p>
+        <div id="HeadContainer">
+            <div id="rolemodelContainer">
+                <a href="">
+                    <img id="ArrowBtn" src="{% static 'img/arrow-left.svg'%}" />
+                </a>
+                <div class="rolemodelText">
+                    <p>롤모델 보기</p>
                 </div>
-            {% endfor %}
+            </div>
         </div>
-    {% else %}
-        <p>아직 이 직무에 연결된 롤모델이 없어요.</p>
-    {% endif %}
+        
+        <div id="mainContainer">
+            <div class="info_container">
+                <div class="job_info1">
+                    <p>이 직무에서 일하는 사람은 어떤 모습일까요?</p>
+                </div>
+                <div class="job_info2">
+                    <p>해당 직무와 유사한 분야의 여성 STEM<br>롤모델을 소개해드릴게요</p>
+                </div>
+            </div>
+
+            {% if roles %}
+
+
+            <div class="rolemodel_container">
+                <div class="board1">
+                    {% for role in roles %}
+                    <div class="box">
+                        <div class="info_box">
+                            <div class="job_box">
+                                <div class="job_info_box">
+                                    <p class="name">👩‍🔬 {{role.role_name}}</p>
+                                    <p class="job_title"> {{role.role_title}}</p>
+                                </div>
+                                <p class="short_bio"> {{role.short_bio}}</p> 
+                            </div>
+                            <p class="quote"> {{role.quote}}</p>
+                        </div>
+                        <a href="{{role.original_url}}" style="text-decoration: none;">
+                            <div class="article"><p>→ 원문 글 보러 가기 →</p></div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+
+
+                <div class="board2">
+                    <a href="{% url 'home' %}">
+                        <Button type="button" id="mainBtn"><p>메인 홈 이동 ▸</p></Button>
+                    </a>
+                    <Button type="button" id="otherjobBtn"><p>다른 직무 추천받기</p></Button>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

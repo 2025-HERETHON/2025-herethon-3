@@ -158,7 +158,7 @@
                 <div class="board3">
                     <div class="title">진입 루트</div>
                     <div class="list_container">
-                        {% for path in  job.entry_path %}
+                        {% for path in  job.entry_path|split_by_comma %}
                             <div class="list_box">
                                 <img class="groupBtn" src="{% static 'img/Group.svg' %}">
                                 <div class="list_content"><p>{{ path }}</p></div>

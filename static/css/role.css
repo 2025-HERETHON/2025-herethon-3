@@ -10,11 +10,7 @@ p{
     font-style: normal;
     color: var(--Gray-Gray10, #3F3F3F);
 }
-.highlight {
-    background: linear-gradient(to bottom, transparent 50%, #FFE78A 70%);
-    padding: 0 4px; /* 글자 양옆 약간 여백 */
-    border-radius: 4px;
-}
+
 
 
 /* ---------------------- */
@@ -53,12 +49,12 @@ header {
     align-items: center; 
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.08);
 }
-#recommendContainer{
+#rolemodelContainer{
     display: flex;
     align-items: center;
     gap: 64px;
 }
-.recommendText{
+.rolemodelText{
     display: flex;
     width: 151px;
     padding: 4px 0px;
@@ -66,7 +62,7 @@ header {
     align-items: center;
     gap: 10px;
 }
-.recommendText P{
+.rolemodelText P{
     text-align: center;
     font-size: 20px;
     font-weight: 600;
@@ -75,7 +71,10 @@ header {
 }
 
 #mainContainer{
-    margin-left: 23px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 /* info_container 설명 부분 */
 .info_container{
@@ -86,175 +85,140 @@ header {
     margin-top: 32px;
 }
 .job_info1 p{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     line-height: 24px; /* 120% */
-    letter-spacing: -0.064px;
+    letter-spacing: -0.058px;
 }
 .job_info2 p{
-    width: 243px;
+    width: 252px;
     font-size: 16px;
     font-weight: 600;
     line-height: 20px;
     letter-spacing: -0.051px;
 }
-.job_info3{
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px; /* 120% */
-    letter-spacing: -0.064px;
-    margin-top: 55px;
-    margin-bottom: 33px;
-}
 
-/* 역량, 전공 학과, 진입 루트에 대한 container */
-.detail_container{
+/* 롤모델 카드 */
+.rolemodel_container{
     display: flex;
-    width: 346px;
+    width: 296px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 120px;
+}
+.board1{
+    display: flex;
+    height: 281px;
+    padding: 24px 17px;
     flex-direction: column;
     align-items: center;
-    gap: 44px;
+    gap: 10px;
+    align-self: stretch;
+    border-radius: 16px;
+    border: 1px solid #E5E7EB;
+    background: var(--Blue-Blue01, #F1F9FF);
+    margin-top: 52px;
 }
-.title{
-    font-size: 20px;
-    font-weight: 600;
-    line-height: 24px; /* 120% */
-    letter-spacing: -0.064px;
+.box{
+    display: flex;
+    height: 233px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    flex-shrink: 0;
+    align-self: stretch;
+}
+.article{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+.article p{
+    color: var(--Gray-Gray07, #8C8C8C);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.045px;
+}
+.article:hover p {
+    color: #2450A8;
+    text-decoration: underline;
+}
+
+.info_box{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 19px;
+    align-self: stretch;
+}
+.job_box{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 13px;
+}
+.quote{
     color: var(--Gray-Gray10, #3F3F3F);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px; /* 150% */
+    letter-spacing: -0.051px;
 }
-
-.board{
+.job_info_box {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 11px;
+    gap: 5px;
     align-self: stretch;
 }
-
-.scroll_container1{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
-    overflow-x: auto;
-    white-space: nowrap;
-    -ms-overflow-style: none; /* IE에서 스크롤바 숨김 */
-    scrollbar-width: none; 
-    cursor: grab;
+.name{
+    color: var(--Gray-Gray09, #595959);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: -0.051px;
 }
-.scroll_container1:active {
-  cursor: grabbing;           /* 드래그 중일 때 커서 */
+.job_title{
+    color: var(--Gray-Gray07, #8C8C8C);
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 18px; /* 128.571% */
+    letter-spacing: -0.045px;  
 }
-
-.badge1{
-    display: inline-block;
-    white-space: nowrap;
-    padding: 8px 12px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    background: var(--Gray-Gray02, #F2F2F2);
-    user-select: none;
-}
-
-.badge1 p{
+.short_bio{
+    color: var(--Gray-Gray10, #3F3F3F);
     font-size: 12px;
     font-weight: 400;
     line-height: 18px; /* 150% */
     letter-spacing: -0.038px;
 }
 
-/* 관련 전공 학과 */
-.scroll_container2{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
-    overflow-x: auto;
-    white-space: nowrap;
-    -ms-overflow-style: none; /* IE에서 스크롤바 숨김 */
-    scrollbar-width: none; 
-    cursor: grab;
-}
-.scroll_container2:active {
-  cursor: grabbing;           /* 드래그 중일 때 커서 */
-}
 
-.badge2{
-    display: inline-block;
-    white-space: nowrap;
-    padding: 8px 12px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 12px;
-    background: var(--Red-Red02, #FFDAD7);
-    user-select: none;
-}
 
-.badge2 p{
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 18px; /* 150% */
-    letter-spacing: -0.038px;
-}
 
-/* 진입루트 */
-.board3{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 11px;
-    align-self: stretch;
-}
 
-.list_container{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 13px;
-    align-self: stretch;
-}
 
-.list_box{
-    display: flex;
-    align-items: center;
-    gap: 13px;
-}
+
+
+
 
 
 /* 버튼 3개 */
-#like-button {
-    position: absolute;
-    top: 670px;  /* 원하는 위치 조절 */
-    left: 290px; /* 원하는 위치 조절 */
-    width: 48px;
-    height: 48px;
-    background-color: white;
-    border-radius: 30px;
-    border: 1px solid rgba(0, 0, 0, 0.50);
-    cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    z-index: 10;
-}
 
-#like-button img {
-    width: 24px;
-    height: 24px;
-}
-
-.board4{
+.board2{
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-top: 60px;
+    margin-top: 20px;
 }
 
-#rolemodelBtn{
+#mainBtn{
     display: flex;
     padding: 10px;
     justify-content: center;
@@ -266,21 +230,21 @@ header {
     transition: background-color 0.3s ease;
 }
 
-#rolemodelBtn a{
+#mainBtn p{
     color: var(--Navy-Navy08, #1B3F85);
     font-size: 14px;
     font-weight: 400;
     line-height: 18px; /* 128.571% */
     letter-spacing: -0.045px;
 }
-#rolemodelBtn:hover{
+#mainBtn:hover{
     background-color: #1B3F85;  
 }
-#rolemodelBtn:hover a {
+#mainBtn:hover p {
     color: #FFF;
 }
 
-#mainBtn{
+#otherjobBtn{
     display: flex;
     padding: 12px 20px;
     justify-content: center;
@@ -288,11 +252,10 @@ header {
     gap: 10px;
     background-color: white;
 }
-#mainBtn a{
+#otherjobBtn p{
     color: var(--Gray-Gray07, #8C8C8C);
     font-size: 14px;
     font-weight: 500;
     line-height: 18px; /* 128.571% */
     letter-spacing: -0.045px;
 }
-
