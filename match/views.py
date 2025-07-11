@@ -42,12 +42,12 @@ def job_select_view(request):
     if request.method == 'POST':
         selected_tag_names = request.POST.get('interests', '').split(',')
         selected_tag_names = [name.strip() for name in selected_tag_names if name.strip()]
-        print("🔍 선택된 관심사:", selected_tag_names)
+        print("✅ 선택된 tag_name 목록:", selected_tag_names)
 
         # 기존 선택 삭제
         UserSelectedTag.objects.filter(user=request.user).delete()
 
-        # 관심사 이름으로 태그 저장
+        # 관심사 이름으로 InterestTag 객체 찾기
         selected_tags = []
         for tag_name in selected_tag_names:
             try:
@@ -55,20 +55,19 @@ def job_select_view(request):
                 UserSelectedTag.objects.create(user=request.user, tag=tag)
                 selected_tags.append(tag)
             except InterestTag.DoesNotExist:
-                print(f"관심사 '{tag_name}' 존재하지 않음")
+                print(f"❌ '{tag_name}'는 InterestTag에 없음")
 
-        # 관심사에 따른 직무 추천 (3개 제한)
+        # 직무 추천: 관심사 관련 태그를 갖는 Job
         recommended_jobs = Job.objects.filter(related_tags__in=selected_tags).distinct()[:3]
 
-        # interests는 템플릿에서 JS로 넘기기 위한 리스트 (string list)
         interests = ['#' + tag.tag_name for tag in selected_tags]
 
         return render(request, 'jobs/job_recommendation_tab.html', {
             'interests': interests,
-            'jobs': recommended_jobs
+            'jobs': recommended_jobs,
+            'selected_tags': selected_tags, 
         })
 
-    # GET 요청 시 관심사 선택 페이지 렌더
     return render(request, 'match/interest_selection_tab.html')
 
 # http://127.0.0.1:8000/match/job_detail/ 의 view (선택한 직무 상세보기)
