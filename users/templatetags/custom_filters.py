@@ -13,3 +13,15 @@ def split_plus(value):
     if value:
         return [s.strip() for s in value.split('+')]
     return []
+
+@register.filter
+def split_by_splash(value):
+    if value:
+        return [item.strip() for item in value.split('/')]
+    return []
+
+@register.filter
+def split_by_comma(value):
+    if value:
+        return [item.strip() for item in value.split(',')]
+    return []
