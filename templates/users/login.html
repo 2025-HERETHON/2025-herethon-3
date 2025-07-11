@@ -46,15 +46,15 @@
         </div>
 
         <!-- 에러 메시지 (초기에는 숨김) -->
-        <div id="Error" style="display: none">
-          아이디 또는 비밀번호를 다시 확인해주세요.
-        </div>
+        <div id="Error">아이디 또는 비밀번호를 다시 확인해주세요.</div>
 
         <!-- 로그인 버튼 -->
         <button id="loginBtn" type="submit">로그인</button>
       </form>
 
-      <div id="searchContainer">아이디 찾기 l 비밀번호 찾기</div>
+      <div id="searchContainer">
+        아이디 찾기 <img src="{% static 'img/bar.svg' %}" /> 비밀번호 찾기
+      </div>
     </div>
 
     <script type="text/javascript" src="{% static 'js/login.js' %}"></script>

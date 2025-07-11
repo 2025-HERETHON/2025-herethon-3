@@ -125,22 +125,19 @@ button {
 #Error {
   color: var(--Red-Primary, #ff5b4d);
   text-align: start;
-
-  /* Body/Body 4 */
   font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
-  line-height: 18px; /* 128.571% */
+  line-height: 18px;
   letter-spacing: -0.045px;
 
-  margin-top: 5px;
-  position: absolute;
-  left: 20px;
-  top: 355px;
-  opacity: 0;
-  transition: opacity 0.1s ease;
+  margin-top: -12px;
+  margin-bottom: 16px;
+
+  display: none;
 }
+
 #Error.show {
-  opacity: 1;
+  display: block;
 }
